@@ -6,10 +6,10 @@ const FooterSection = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-md bg-primary/20 border border-primary/30 flex items-center justify-center">
-            <span className="text-primary font-mono font-bold text-xs">TS</span>
+            <span className="text-primary font-mono font-bold text-xs">T</span>
           </div>
           <span className="font-display font-bold text-foreground">
-            Toilet<span className="text-primary">Stake</span>
+            TOILET
           </span>
         </div>
 
@@ -30,7 +30,7 @@ const FooterSection = () => {
         </div>
       </div>
       <div className="text-center text-xs text-muted-foreground mt-8">
-        © 2026 ToiletStake. All rights reserved. Built on Sui.
+        © 2026 TOILET. All rights reserved. Built on Sui.
       </div>
     </footer>
   );

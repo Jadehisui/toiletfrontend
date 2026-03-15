@@ -22,7 +22,7 @@ const Index = () => {
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 py-4 bg-background/90 backdrop-blur-md border-b-2 border-primary/20 shadow-sm shadow-primary/5">
-        <div className="font-display text-base md:text-lg text-primary tracking-wider font-bold">TOILETSTAKE</div>
+        <div className="font-display text-base md:text-lg text-primary tracking-wider font-bold">TOILET</div>
         <nav className="hidden md:flex gap-8 text-sm text-muted-foreground font-mono">
           <a href="#machine" className="hover:text-primary transition-colors py-2">LOTTERY</a>
           <a href="#stake" className="hover:text-primary transition-colors py-2">STAKE</a>
@@ -39,7 +39,7 @@ const Index = () => {
       <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-16 text-center gap-10">
         <motion.img
           src={mascot1}
-          alt="ToiletStake Mascot"
+          alt="TOILET Mascot"
           className="w-32 h-32 md:w-44 md:h-44 rounded-full border-2 border-primary retro-glow object-cover"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -96,9 +96,9 @@ const Index = () => {
       {/* ═══ ABOUT ═══ */}
       <section id="about" className="py-20 px-6 max-w-4xl mx-auto">
         <motion.div {...fadeUp} className="text-center space-y-4 mb-14">
-          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">WHAT IS TOILETSTAKE?</h2>
+          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">WHAT IS TOILET?</h2>
           <p className="text-sm md:text-base text-muted-foreground font-mono max-w-2xl mx-auto leading-relaxed">
-            ToiletStake is a community-driven staking & lottery protocol built on the Sui blockchain.
+            TOILET is a community-driven staking & lottery protocol built on the Sui blockchain.
             Stake your TOILET tokens, earn rewards, and enter decentralized lottery draws — all fully on-chain.
           </p>
         </motion.div>
@@ -182,7 +182,7 @@ const Index = () => {
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t-2 border-primary/20 py-10 px-6 mt-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto opacity-80 hover:opacity-100 transition-opacity text-center md:text-left">
-          <div className="text-xs text-muted-foreground font-mono">© 2025 TOILETSTAKE — BUILT ON SUI</div>
+          <div className="text-xs text-muted-foreground font-mono">© 2025 TOILET — BUILT ON SUI</div>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-xs text-muted-foreground font-mono tracking-wider">
             <a href="#" className="hover:text-primary transition-colors py-2">DOCS</a>
             <a href="#" className="hover:text-primary transition-colors py-2">GITHUB</a>

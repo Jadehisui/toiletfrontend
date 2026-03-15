@@ -1,4 +1,4 @@
-# ToiletStake
+# TOILET
 
 Next-gen staking and lottery protocol on Sui. Stake tokens, earn rewards, win big.
 
