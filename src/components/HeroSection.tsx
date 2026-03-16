@@ -82,7 +82,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0 mb-10 leading-relaxed"
           >
-            TOILET is a next-generation staking and lottery protocol built on Sui.
+            TD2 is a next-generation staking and lottery protocol built on Sui.
             Stake tokens, earn rewards, and participate in decentralized lottery draws.
           </motion.p>
 
@@ -131,7 +131,7 @@ const HeroSection = () => {
             <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-gold/20 rounded-3xl blur-2xl animate-pulse-glow" />
             <img
               src={mascotHero}
-              alt="TOILET Golden Mascot"
+              alt="TD2 Golden Mascot"
               className="relative w-full rounded-2xl border border-border/50"
             />
           </div>

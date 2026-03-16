@@ -16,15 +16,15 @@ const FooterSection = () => {
         <div className="flex items-center gap-6 text-sm text-muted-foreground">
           <a href="#" className="hover:text-primary transition-colors">Docs</a>
           <a href="#" className="hover:text-primary transition-colors">GitHub</a>
-          <a href="#" className="hover:text-primary transition-colors">Twitter / X</a>
-          <a href="#" className="hover:text-primary transition-colors">Discord</a>
+          <a href="https://x.com/toiletdustsui2?s=21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">X</a>
+          <a href="https://t.me/ToiletDustTD2" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Telegram</a>
         </div>
 
         <div className="flex items-center gap-4">
           <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
             <Github className="w-5 h-5" strokeWidth={1.5} />
           </a>
-          <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+          <a href="https://x.com/toiletdustsui2?s=21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
             <Twitter className="w-5 h-5" strokeWidth={1.5} />
           </a>
         </div>

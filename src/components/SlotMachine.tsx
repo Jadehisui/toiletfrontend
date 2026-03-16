@@ -176,14 +176,10 @@ const SlotMachine = () => {
         </AnimatePresence>
 
         {/* Stats bar */}
-        <div className="border-t-2 border-primary/30 grid grid-cols-3 text-center divide-x-2 divide-primary/20">
+        <div className="border-t-2 border-primary/30 grid grid-cols-2 text-center divide-x-2 divide-primary/20">
           <div className="py-3 px-2">
             <div className="text-[8px] text-muted-foreground font-mono">ENTRY</div>
             <div className="text-xs font-mono font-bold text-primary">1 SUI</div>
-          </div>
-          <div className="py-3 px-2">
-            <div className="text-[8px] text-muted-foreground font-mono">PLAYERS</div>
-            <div className="text-xs font-mono font-bold text-primary">47/100</div>
           </div>
           <div className="py-3 px-2">
             <div className="text-[8px] text-muted-foreground font-mono">NEXT DRAW</div>

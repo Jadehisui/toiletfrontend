@@ -22,7 +22,7 @@ const Index = () => {
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 py-4 bg-background/90 backdrop-blur-md border-b-2 border-primary/20 shadow-sm shadow-primary/5">
-        <div className="font-display text-base md:text-lg text-primary tracking-wider font-bold">TOILET</div>
+        <div className="font-display text-base md:text-lg text-primary tracking-wider font-bold">TD2</div>
         <nav className="hidden md:flex gap-8 text-sm text-muted-foreground font-mono">
           <a href="#machine" className="hover:text-primary transition-colors py-2">LOTTERY</a>
           <a href="#stake" className="hover:text-primary transition-colors py-2">STAKE</a>
@@ -39,7 +39,7 @@ const Index = () => {
       <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-16 text-center gap-10">
         <motion.img
           src={mascot1}
-          alt="TOILET Mascot"
+          alt="TD2 Mascot"
           className="w-32 h-32 md:w-44 md:h-44 rounded-full border-2 border-primary retro-glow object-cover"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -80,15 +80,15 @@ const Index = () => {
       {/* ═══ STAKING APP ═══ */}
       <section id="stake" className="py-20 px-6 max-w-4xl mx-auto flex flex-col items-center">
         <motion.div {...fadeUp} className="text-center space-y-4 mb-8">
-          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">STAKE YOUR TOILET</h2>
+          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">STAKE YOUR TD2</h2>
           <p className="text-sm md:text-base text-muted-foreground font-mono max-w-lg mx-auto leading-relaxed">
-            Lock up your TOILET tokens to earn high yields and support the network protocol. Enter the dApp to get started.
+            Lock up your TD2 tokens to earn high yields and support the network protocol. Enter the dApp to get started.
           </p>
         </motion.div>
 
         <motion.div {...fadeUp}>
           <a href="/stake" className="px-10 py-5 bg-primary text-primary-foreground font-display text-base md:text-lg retro-border hover:retro-glow transition-all hover:-translate-y-1 text-center font-bold tracking-widest inline-block">
-            STAKE NOW
+            STAKE ON LAUNCH
           </a>
         </motion.div>
       </section>
@@ -96,17 +96,17 @@ const Index = () => {
       {/* ═══ ABOUT ═══ */}
       <section id="about" className="py-20 px-6 max-w-4xl mx-auto">
         <motion.div {...fadeUp} className="text-center space-y-4 mb-14">
-          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">WHAT IS TOILET?</h2>
+          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">WHAT IS TD2?</h2>
           <p className="text-sm md:text-base text-muted-foreground font-mono max-w-2xl mx-auto leading-relaxed">
-            TOILET is a community-driven staking & lottery protocol built on the Sui blockchain.
-            Stake your TOILET tokens, earn rewards, and enter decentralized lottery draws — all fully on-chain.
+            TD2 is a community-driven staking & lottery protocol built on the Sui blockchain.
+            Stake your TD2 tokens, earn rewards, and enter decentralized lottery draws — all fully on-chain.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             { img: mascot2, title: "DECENTRALIZED LOTTERY", desc: "Provably fair draws using on-chain randomness. No middlemen." },
-            { img: mascot3, title: "HIGH YIELD STAKING", desc: "Stake TOILET tokens and earn passive rewards every epoch." },
+            { img: mascot3, title: "HIGH YIELD STAKING", desc: "Stake TD2 tokens and earn passive rewards every epoch." },
             { img: mascot4, title: "COMMUNITY DRIVEN", desc: "Governance by holders. The community decides the protocol's future." },
             { img: mascot5, title: "FAST SUI TRANSACTIONS", desc: "Sub-second finality on Sui. Low fees, instant settlement." },
           ].map((card, i) => (
@@ -131,15 +131,15 @@ const Index = () => {
       {/* ═══ TOKEN ═══ */}
       <section id="token" className="py-20 px-6 max-w-2xl mx-auto text-center">
         <motion.div {...fadeUp} className="space-y-8">
-          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">$TOILET TOKEN</h2>
+          <h2 className="font-display text-xl md:text-3xl text-primary tracking-wider">$TD2 TOKEN</h2>
           <div className="retro-border bg-card p-8 md:p-10 space-y-8 hover:retro-glow transition-all duration-300">
-            <img src={mascot1} alt="TOILET Token" className="w-32 h-32 rounded-full border-2 border-primary mx-auto object-cover retro-glow mb-4" />
+            <img src={mascot1} alt="TD2 Token" className="w-32 h-32 rounded-full border-2 border-primary mx-auto object-cover retro-glow mb-4" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
               {[
-                { label: "SYMBOL", value: "$TOILET" },
+                { label: "SYMBOL", value: "$TD2" },
                 { label: "NETWORK", value: "SUI" },
                 { label: "UTILITY", value: "STAKE / LOTTERY / GOV" },
-                { label: "SUPPLY", value: "1,000,000,000" },
+                { label: "SUPPLY", value: "10,000,000,000" },
               ].map((item) => (
                 <div key={item.label} className="p-3 border-l-2 border-primary/20 pl-4">
                   <div className="text-xs text-muted-foreground font-mono mb-1">{item.label}</div>
@@ -159,7 +159,7 @@ const Index = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { step: "01", title: "CONNECT", desc: "Link your Sui wallet" },
-            { step: "02", title: "STAKE", desc: "Stake TOILET tokens" },
+            { step: "02", title: "STAKE", desc: "Stake TD2 tokens" },
             { step: "03", title: "ENTER", desc: "Buy a lottery ticket" },
             { step: "04", title: "WIN", desc: "Collect your rewards" },
           ].map((item, i) => (
@@ -182,12 +182,12 @@ const Index = () => {
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t-2 border-primary/20 py-10 px-6 mt-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto opacity-80 hover:opacity-100 transition-opacity text-center md:text-left">
-          <div className="text-xs text-muted-foreground font-mono">© 2025 TOILET — BUILT ON SUI</div>
+          <div className="text-xs text-muted-foreground font-mono">© 2026 TD2 — BUILT ON SUI</div>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-xs text-muted-foreground font-mono tracking-wider">
             <a href="#" className="hover:text-primary transition-colors py-2">DOCS</a>
             <a href="#" className="hover:text-primary transition-colors py-2">GITHUB</a>
-            <a href="#" className="hover:text-primary transition-colors py-2">X</a>
-            <a href="#" className="hover:text-primary transition-colors py-2">DISCORD</a>
+            <a href="https://x.com/toiletdustsui2?s=21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors py-2">X</a>
+            <a href="https://t.me/ToiletDustTD2" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors py-2">TELEGRAM</a>
           </div>
         </div>
       </footer>
