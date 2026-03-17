@@ -1,28 +1,2978 @@
-<!doctype html>
-<html lang="en" class="dark">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚽</text></svg>" />
-  <title>TD2 – Stake. Flush. Win.</title>
-  <meta name="description"
-    content="Next-gen staking and lottery protocol on Sui. Stake tokens, earn rewards, win big." />
-  <meta name="author" content="TD2" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TD2 | TOILET DUST 2.0 — STAKE. FLUSH. WIN.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-deep: #0a0a1a;
+            --blue-dark: #0d1025;
+            --blue-mid: #151a3d;
+            --blue-accent: #4d7cff;
+            --blue-glow: #00ffff;
+            --gold: #ffd700;
+            --gold-light: #ffec8b;
+            --gold-dark: #b8860b;
+            --magenta: #ff00ff;
+            --green: #00ff66;
+            --red: #ff3366;
+            --white: #ffffff;
+            --gray: #7a8599;
+        }
 
-  <meta property="og:title" content="TD2" />
-  <meta property="og:description" content="Next-gen staking and lottery protocol on Sui." />
-  <meta property="og:type" content="website" />
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TD2" />
-  <meta name="twitter:description" content="Next-gen staking and lottery protocol on Sui." />
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--blue-deep);
+            color: var(--white);
+            overflow-x: hidden;
+            font-size: 18px;
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="0" y="0" width="8" height="8" fill="%23ffd700"/><rect x="8" y="8" width="8" height="8" fill="%23ffd700"/><rect x="16" y="16" width="8" height="8" fill="%23ffd700"/></svg>') 0 0, auto;
+        }
+
+        /* GLOBAL TEXT EFFECTS */
+        .gold-text {
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 40px var(--gold-dark);
+        }
+
+        .glitch {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            91% { transform: translate(-2px, 1px); }
+            92% { transform: translate(2px, -1px); }
+            93% { transform: translate(-1px, 2px); }
+            94% { transform: translate(1px, -2px); }
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        .glitch::before {
+            color: var(--blue-glow);
+            animation: glitchBefore 3s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+
+        .glitch::after {
+            color: var(--magenta);
+            animation: glitchAfter 3s infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitchBefore {
+            0%, 90%, 100% { transform: translate(0); }
+            91% { transform: translate(3px, 0); }
+            92% { transform: translate(-3px, 0); }
+            93% { transform: translate(2px, 0); }
+        }
+
+        @keyframes glitchAfter {
+            0%, 90%, 100% { transform: translate(0); }
+            91% { transform: translate(-3px, 0); }
+            92% { transform: translate(3px, 0); }
+            93% { transform: translate(-2px, 0); }
+        }
+
+        /* SCANLINES & CRT */
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 255, 0.02) 2px,
+                rgba(0, 255, 255, 0.02) 4px
+            );
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .crt-flicker {
+            position: fixed;
+            inset: 0;
+            background: transparent;
+            pointer-events: none;
+            z-index: 9997;
+            animation: crtFlicker 0.1s infinite;
+        }
+
+        @keyframes crtFlicker {
+            0% { opacity: 0.97; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        /* PIXEL BORDER UTIL */
+        .pixel-border {
+            border: 4px solid var(--gold);
+            box-shadow: 
+                inset -4px -4px 0 0 var(--gold-dark),
+                inset 4px 4px 0 0 var(--gold-light),
+                0 0 0 4px var(--blue-deep),
+                0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 26, 0.95);
+            border-bottom: 4px solid var(--gold);
+            box-shadow: 0 4px 0 var(--gold-dark), 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .nav-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            animation: logoJump 1s ease-in-out infinite;
+            image-rendering: pixelated;
+        }
+
+        @keyframes logoJump {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.05); }
+        }
+
+        .logo-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { text-shadow: 0 0 10px var(--gold); }
+            50% { text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.55rem;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '>';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            color: var(--gold);
+            animation: blink 0.5s steps(1) infinite;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { opacity: 1; }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+        /* WALLET BUTTON - Pixelated */
+        .wallet-btn {
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue-mid);
+            border: 3px solid var(--blue-glow);
+            color: var(--blue-glow);
+            padding: 10px 16px;
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: all 0.1s;
+            text-transform: uppercase;
+            box-shadow: 
+                inset -2px -2px 0 0 rgba(0,0,0,0.3),
+                inset 2px 2px 0 0 rgba(255,255,255,0.1),
+                0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .wallet-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--blue-glow);
+        }
+
+        .wallet-btn:active {
+            transform: scale(0.95);
+        }
+
+        .wallet-btn.connected {
+            border-color: var(--green);
+            color: var(--green);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+
+        .buy-btn {
+            font-family: 'Press Start 2P', cursive;
+            background: var(--gold);
+            color: var(--blue-deep);
+            padding: 12px 20px;
+            font-size: 0.5rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 
+                4px 4px 0 var(--gold-dark),
+                0 0 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.1s;
+            animation: buyPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes buyPulse {
+            0%, 100% { box-shadow: 4px 4px 0 var(--gold-dark), 0 0 20px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 4px 4px 0 var(--gold-dark), 0 0 40px rgba(255, 215, 0, 0.7); }
+        }
+
+        .buy-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--gold-dark), 0 0 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .buy-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--gold-dark);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: 3px solid var(--gold);
+            color: var(--gold);
+            font-size: 1.5rem;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           HERO SECTION - TONS OF ANIMATIONS
+        ═══════════════════════════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        /* Animated grid background */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(77, 124, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(77, 124, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            perspective: 500px;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        /* Floating pixel shapes */
+        .pixel-shapes {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .pixel-shape {
+            position: absolute;
+            background: var(--gold);
+            opacity: 0.6;
+            animation: shapeFloat 8s ease-in-out infinite;
+        }
+
+        .pixel-shape.square {
+            width: 20px; height: 20px;
+        }
+
+        .pixel-shape.rect {
+            width: 30px; height: 10px;
+        }
+
+        .pixel-shape:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .pixel-shape:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; background: var(--blue-glow); }
+        .pixel-shape:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 2s; background: var(--magenta); }
+        .pixel-shape:nth-child(4) { top: 50%; right: 5%; animation-delay: 0.5s; }
+        .pixel-shape:nth-child(5) { bottom: 10%; right: 20%; animation-delay: 1.5s; background: var(--green); }
+        .pixel-shape:nth-child(6) { top: 70%; left: 8%; animation-delay: 2.5s; background: var(--blue-glow); }
+
+        @keyframes shapeFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(30px) rotate(270deg); }
+        }
+
+        /* Flying coins */
+        .flying-coins {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .coin {
+            position: absolute;
+            font-size: 2rem;
+            animation: coinFly 6s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes coinFly {
+            0% { transform: translateX(-50px) translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(50px) translateY(-100px) rotate(720deg); opacity: 0; }
+        }
+
+        /* Stars twinkling */
+        .stars {
+            position: absolute;
+            inset: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: var(--white);
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--blue-mid);
+            border: 3px solid var(--green);
+            padding: 8px 20px;
+            margin-bottom: 2rem;
+            animation: badgeBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes badgeBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .hero-badge .blink-dot {
+            width: 10px; height: 10px;
+            background: var(--green);
+            animation: dotBlink 1s steps(1) infinite;
+        }
+
+        @keyframes dotBlink {
+            50% { background: transparent; }
+        }
+
+        .hero-badge span {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--green);
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1.5rem, 6vw, 3.5rem);
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title .line {
+            display: block;
+            opacity: 0;
+            animation: typeIn 0.5s steps(10) forwards;
+        }
+
+        .hero-title .line:nth-child(1) { animation-delay: 0.2s; }
+        .hero-title .line:nth-child(2) { animation-delay: 0.7s; }
+        .hero-title .line:nth-child(3) { animation-delay: 1.2s; }
+
+        @keyframes typeIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-title .gold { color: var(--gold); text-shadow: 0 0 20px var(--gold), 4px 4px 0 var(--gold-dark); }
+        .hero-title .cyan { color: var(--blue-glow); text-shadow: 0 0 20px var(--blue-glow); }
+
+        .hero-desc {
+            font-size: 1.4rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 1.5s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 1.8s forwards;
+        }
+
+        .btn {
+            font-family: 'Press Start 2P', cursive;
+            padding: 15px 30px;
+            font-size: 0.65rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.1s;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--blue-deep);
+            box-shadow: 5px 5px 0 var(--gold-dark);
+            animation: btnFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes btnFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .btn-primary:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--gold-dark);
+        }
+
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--gold-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 4px solid var(--blue-glow);
+            color: var(--blue-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-glow);
+            color: var(--blue-deep);
+            box-shadow: 0 0 40px var(--blue-glow);
+        }
+
+        .hero-mascot {
+            margin-top: 3rem;
+            opacity: 0;
+            animation: mascotEnter 1s ease 2s forwards;
+        }
+
+        @keyframes mascotEnter {
+            from { opacity: 0; transform: scale(0) rotate(-180deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .mascot-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .mascot-img {
+            width: 160px;
+            height: 160px;
+            border: 6px solid var(--gold);
+            box-shadow: 
+                8px 8px 0 var(--gold-dark),
+                0 0 50px rgba(255, 215, 0, 0.5);
+            animation: mascotBob 3s ease-in-out infinite;
+            object-fit: cover;
+            image-rendering: auto;
+        }
+
+        @keyframes mascotBob {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .mascot-sparkles {
+            position: absolute;
+            inset: -30px;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px; height: 10px;
+            background: var(--gold);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparklePop 1.5s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 0; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; right: 0; animation-delay: 0.3s; }
+        .sparkle:nth-child(3) { bottom: 10%; right: 10%; animation-delay: 0.6s; }
+        .sparkle:nth-child(4) { bottom: 0; left: 30%; animation-delay: 0.9s; }
+        .sparkle:nth-child(5) { top: 40%; left: 0; animation-delay: 1.2s; }
+
+        @keyframes sparklePop {
+            0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PIXELATED SLOT MACHINE - ARCADE STYLE WITH SIDE PANELS
+        ═══════════════════════════════════════════════════════════════ */
+        .slot-section {
+            padding: 6rem 2rem;
+            position: relative;
+            background: linear-gradient(180deg, var(--blue-deep), var(--blue-dark), var(--blue-deep));
+        }
+
+        .slot-layout {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* INFO PANELS */
+        .slot-info-panel {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .info-card {
+            background: linear-gradient(180deg, var(--blue-mid), var(--blue-dark));
+            border: 3px solid var(--gold);
+            box-shadow: 4px 4px 0 var(--gold-dark);
+        }
+
+        .info-card-header {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card-header .info-icon {
+            font-size: 1.2rem;
+        }
+
+        .info-card-header h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--blue-deep);
+            letter-spacing: 1px;
+        }
+
+        .info-card-body {
+            padding: 15px;
+        }
+
+        /* How to play steps */
+        .info-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .info-step:last-child { margin-bottom: 0; }
+
+        .info-step .step-num {
+            width: 24px;
+            height: 24px;
+            background: var(--gold);
+            color: var(--blue-deep);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Odds display */
+        .odds-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .odds-row:last-of-type { border-bottom: none; }
+
+        .odds-value {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--green);
+        }
+
+        .odds-divider {
+            height: 2px;
+            background: var(--gold);
+            margin: 12px 0;
+        }
+
+        .odds-note {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* Balance card */
+        .balance-card .info-card-body {
+            text-align: center;
+        }
+
+        .balance-display {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .balance-value {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .balance-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--gray);
+        }
+
+        .balance-note {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .balance-note.low {
+            color: var(--red);
+        }
+
+        .balance-note.ok {
+            color: var(--green);
+        }
+
+        /* Recent wins */
+        .recent-win {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--green);
+        }
+
+        .recent-win:last-child { margin-bottom: 0; }
+
+        .win-addr {
+            font-family: 'VT323', monospace;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .win-amount {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45rem;
+            color: var(--green);
+        }
+
+        /* Stats rows */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .stat-row:last-child { border-bottom: none; }
+
+        .stat-row .stat-value {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45rem;
+            color: var(--gold);
+        }
+
+        /* Sound toggle */
+        .sound-toggle {
+            width: 100%;
+            padding: 12px;
+            background: var(--blue-mid);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .sound-toggle:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .sound-toggle.off {
+            border-color: var(--gray);
+            color: var(--gray);
+        }
+
+        /* Treasury address styling */
+        .treasury-addr {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .treasury-addr:hover {
+            color: var(--blue-glow);
+        }
+
+        .treasury-row {
+            border-top: 1px solid var(--gold);
+            margin-top: 8px;
+            padding-top: 12px !important;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--blue-glow);
+            margin-bottom: 1rem;
+            animation: tagFlicker 3s ease-in-out infinite;
+        }
+
+        @keyframes tagFlicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.5; }
+            94% { opacity: 1; }
+            96% { opacity: 0.7; }
+        }
+
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            line-height: 1.6;
+        }
+
+        /* THE ARCADE CABINET */
+        .arcade-cabinet {
+            max-width: 380px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Cabinet top decoration */
+        .cabinet-top {
+            background: linear-gradient(180deg, #2a2a4a, #1a1a3a);
+            height: 60px;
+            border: 4px solid var(--gold);
+            border-bottom: none;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cabinet-top::before {
+            content: '★ FLUSH SLOTS ★';
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--gold);
+            animation: marquee 10s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .cabinet-lights {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .cabinet-light {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            animation: cabinetBlink 0.5s ease-in-out infinite alternate;
+        }
+
+        .cabinet-light:nth-child(1) { background: var(--red); animation-delay: 0s; }
+        .cabinet-light:nth-child(2) { background: var(--gold); animation-delay: 0.1s; }
+        .cabinet-light:nth-child(3) { background: var(--green); animation-delay: 0.2s; }
+        .cabinet-light:nth-child(4) { background: var(--blue-glow); animation-delay: 0.3s; }
+        .cabinet-light:nth-child(5) { background: var(--magenta); animation-delay: 0.4s; }
+
+        @keyframes cabinetBlink {
+            from { opacity: 0.4; box-shadow: none; }
+            to { opacity: 1; box-shadow: 0 0 10px currentColor; }
+        }
+
+        /* Main cabinet body */
+        .cabinet-body {
+            background: linear-gradient(180deg, #1a1a3a, #0d0d2a);
+            border: 4px solid var(--gold);
+            border-top: none;
+            padding: 0;
+            position: relative;
+            box-shadow: 
+                inset 0 0 50px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(255, 215, 0, 0.2),
+                10px 10px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Screen frame */
+        .screen-frame {
+            background: #0a0a15;
+            margin: 15px;
+            padding: 4px;
+            border: 4px solid #333;
+            box-shadow: 
+                inset 0 0 30px rgba(0, 255, 255, 0.1),
+                0 0 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .screen-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 50%
+            );
+            pointer-events: none;
+        }
+
+        /* CRT screen effect */
+        .crt-screen {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crt-screen::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.3) 2px,
+                rgba(0, 0, 0, 0.3) 4px
+            );
+            pointer-events: none;
+        }
+
+        /* Jackpot display */
+        .jackpot-display {
+            background: linear-gradient(180deg, #1a0a0a, #0a0505);
+            border-bottom: 3px solid var(--gold);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .jackpot-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--red);
+            margin-bottom: 5px;
+            animation: jackpotFlash 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes jackpotFlash {
+            from { opacity: 0.7; }
+            to { opacity: 1; text-shadow: 0 0 10px var(--red); }
+        }
+
+        .jackpot-value {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-shadow: 
+                0 0 10px var(--gold),
+                0 0 20px var(--gold),
+                4px 4px 0 var(--gold-dark);
+            animation: jackpotPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes jackpotPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* PIXEL REELS */
+        .reels-area {
+            background: linear-gradient(180deg, #0a0a20, #050510);
+            padding: 25px 15px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .reels-area::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--blue-glow), transparent);
+        }
+
+        .reel-container {
+            position: relative;
+        }
+
+        .reel {
+            width: 85px;
+            height: 100px;
+            background: #000;
+            border: 4px solid var(--blue-accent);
+            box-shadow: 
+                inset 0 0 20px rgba(0, 255, 255, 0.2),
+                0 0 15px rgba(77, 124, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+            z-index: 2;
+        }
+
+        .reel::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            z-index: 2;
+        }
+
+        .reel-symbol {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.15s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        .reel.spinning {
+            animation: reelShake 0.1s linear infinite;
+        }
+
+        .reel.spinning .reel-symbol {
+            animation: symbolBlur 0.08s linear infinite;
+        }
+
+        @keyframes reelShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+
+        @keyframes symbolBlur {
+            0% { transform: translateY(-30px); opacity: 0.3; }
+            50% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(30px); opacity: 0.3; }
+        }
+
+        .reel.winner {
+            animation: reelWin 0.3s ease-in-out infinite;
+            border-color: var(--gold);
+            box-shadow: 0 0 30px var(--gold);
+        }
+
+        @keyframes reelWin {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Reel lights */
+        .reel-light {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px; height: 8px;
+            background: var(--green);
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--green);
+            animation: reelLightBlink 1s ease-in-out infinite;
+        }
+
+        @keyframes reelLightBlink {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Win line indicator */
+        .win-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold);
+            transform: translateY(-50%);
+            opacity: 0;
+            box-shadow: 0 0 20px var(--gold);
+        }
+
+        .win-line.active {
+            opacity: 1;
+            animation: winLinePulse 0.3s ease-in-out infinite;
+        }
+
+        @keyframes winLinePulse {
+            0%, 100% { opacity: 1; height: 4px; }
+            50% { opacity: 0.7; height: 8px; }
+        }
+
+        /* Win display */
+        .win-display {
+            display: none;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            padding: 12px;
+            text-align: center;
+            animation: winFlash 0.2s ease-in-out infinite alternate;
+        }
+
+        .win-display.show {
+            display: block;
+        }
+
+        @keyframes winFlash {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+
+        .win-display span {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--blue-deep);
+            animation: winTextBounce 0.5s ease-in-out infinite;
+        }
+
+        @keyframes winTextBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Stats bar */
+        .slot-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #0a0a20;
+            border-top: 3px solid var(--gold);
+        }
+
+        .stat-box {
+            padding: 12px;
+            text-align: center;
+            border-right: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-box:last-child { border-right: none; }
+
+        .stat-box .label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.4rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .stat-box .value {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+
+        /* Spin button */
+        .spin-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(180deg, #ff3333, #cc0000);
+            border: none;
+            border-top: 4px solid #ff6666;
+            border-bottom: 4px solid #990000;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.1s;
+            text-shadow: 2px 2px 0 #660000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spin-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            animation: btnShine 3s linear infinite;
+        }
+
+        @keyframes btnShine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .spin-btn:hover:not(:disabled) {
+            background: linear-gradient(180deg, #ff4444, #dd0000);
+            transform: scale(1.02);
+        }
+
+        .spin-btn:active:not(:disabled) {
+            transform: scale(0.98);
+            border-top-width: 2px;
+            border-bottom-width: 6px;
+        }
+
+        .spin-btn:disabled {
+            background: linear-gradient(180deg, #666, #444);
+            cursor: not-allowed;
+        }
+
+        .spin-btn:disabled::before {
+            display: none;
+        }
+
+        /* Cabinet bottom */
+        .cabinet-bottom {
+            height: 40px;
+            background: linear-gradient(180deg, #1a1a3a, #0d0d2a);
+            border: 4px solid var(--gold);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cabinet-coin-slot {
+            width: 40px; height: 8px;
+            background: #000;
+            border: 2px solid #444;
+            border-radius: 4px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           OTHER SECTIONS (with animations)
+        ═══════════════════════════════════════════════════════════════ */
+        
+        .about-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
+            border: 3px solid var(--gold);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+            box-shadow: 5px 5px 0 var(--gold-dark);
+        }
+
+        .about-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 10px 10px 0 var(--gold-dark);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--blue-glow), var(--magenta));
+            animation: rainbowSlide 3s linear infinite;
+        }
+
+        @keyframes rainbowSlide {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .about-card-img {
+            width: 60px; height: 60px;
+            border: 3px solid var(--gold);
+            margin-bottom: 1rem;
+            object-fit: cover;
+            animation: imgPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes imgPulse {
+            0%, 100% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+        }
+
+        .about-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .about-card p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* TOKEN SECTION */
+        .token-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--blue-deep), var(--blue-mid), var(--blue-deep));
+        }
+
+        .token-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--blue-dark);
+            border: 4px solid var(--gold);
+            box-shadow: 8px 8px 0 var(--gold-dark);
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .token-card::before {
+            content: '';
+            position: absolute;
+            top: -100%; left: -100%;
+            width: 300%; height: 300%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: tokenSpin 6s linear infinite;
+        }
+
+        @keyframes tokenSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        .token-mascot {
+            width: 120px; height: 120px;
+            border: 4px solid var(--gold);
+            margin: 0 auto 2rem;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            animation: tokenBounce 2s ease-in-out infinite;
+            box-shadow: 5px 5px 0 var(--gold-dark);
+        }
+
+        @keyframes tokenBounce {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        .token-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .token-stat {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--gold);
+            padding: 1rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .token-stat:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .token-stat .label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45rem;
+            color: var(--gray);
+        }
+
+        .token-stat .value {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            color: var(--gold);
+            margin-top: 0.4rem;
+        }
+
+        /* HOW SECTION */
+        .how-section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: var(--blue-mid);
+            border: 3px solid var(--blue-accent);
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .step-card::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Press Start 2P', cursive;
+            color: var(--gold);
+            font-size: 1rem;
+            animation: arrowBlink 1s ease-in-out infinite;
+        }
+
+        .step-card:last-child::after { display: none; }
+
+        @keyframes arrowBlink {
+            0%, 100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+            50% { opacity: 0.5; transform: translateY(-50%) translateX(5px); }
+        }
+
+        .step-num {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: rgba(77, 124, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .step-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .step-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* COMMUNITY */
+        .community-section {
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-video-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .community-video {
+            position: absolute;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.2;
+            filter: hue-rotate(20deg);
+        }
+
+        .community-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--blue-deep), rgba(10, 10, 26, 0.9), var(--blue-deep));
+        }
+
+        .community-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .social-card {
+            background: var(--blue-mid);
+            border: 3px solid var(--gold);
+            padding: 2rem 2.5rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0 var(--gold-dark);
+            min-width: 160px;
+        }
+
+        .social-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0 var(--gold-dark);
+        }
+
+        .social-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+            animation: socialBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes socialBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .social-name {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--white);
+        }
+
+        .social-handle {
+            font-family: 'VT323', monospace;
+            color: var(--gold);
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 4px solid var(--gold);
+            background: var(--blue-dark);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--gray);
+            font-size: 0.45rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--blue-mid);
+            border: 3px solid var(--gold);
+            padding: 15px 25px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 4px 4px 0 var(--gold-dark);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success { border-color: var(--green); color: var(--green); }
+        .toast.error { border-color: var(--red); color: var(--red); }
+        .toast.info { border-color: var(--blue-glow); color: var(--blue-glow); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .slot-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+            .slot-info-panel {
+                width: 100%;
+                max-width: 400px;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .slot-info-panel .info-card {
+                flex: 1;
+                min-width: 180px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .step-card::after { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0.75rem 1rem; }
+            .nav-links, .nav-right { display: none; }
+            .mobile-toggle { display: block; }
+            .hero { padding: 6rem 1rem 3rem; }
+            .hero-title { font-size: 1.2rem; }
+            .slot-section, .about-section, .token-section, .how-section, .community-section { padding: 4rem 1rem; }
+            .slot-layout { gap: 1.5rem; }
+            .slot-info-panel { 
+                display: none; /* Hide panels on mobile, show only machine */
+            }
+            .slot-info-panel:first-child {
+                display: flex; /* Show only left panel (how to play) on mobile */
+                flex-direction: column;
+            }
+            .reel { width: 70px; height: 85px; font-size: 2.5rem; }
+            .reels-area { padding: 20px 10px; }
+            .jackpot-value { font-size: 1.3rem; }
+            .steps-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+            .step-card { padding: 1.5rem 0.75rem; }
+            .token-grid { grid-template-columns: 1fr; }
+            .social-grid { flex-direction: column; align-items: center; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px; left: 0; right: 0;
+            background: var(--blue-deep);
+            border-bottom: 4px solid var(--gold);
+            padding: 1.5rem;
+            z-index: 999;
+        }
+
+        .mobile-menu.active { display: block; }
+
+        .mobile-menu a {
+            display: block;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem;
+            font-size: 0.6rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .mobile-menu a:hover { color: var(--gold); }
+
+        .mobile-menu .wallet-btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
-
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
+    <div class="scanlines"></div>
+    <div class="crt-flicker"></div>
+    <div class="toast" id="toast"></div>
 
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">🚽</div>
+                <span class="logo-text gold-text">TD2</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#machine">Lottery</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#token">Token</a></li>
+                <li><a href="#how">How</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="wallet-btn" id="walletBtn" onclick="connectWallet()">
+                    <span id="walletText">Connect</span>
+                </button>
+               
+            </div>
+            <button class="mobile-toggle" onclick="toggleMobile()">☰</button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#machine" onclick="toggleMobile()">Lottery</a>
+        <a href="#about" onclick="toggleMobile()">About</a>
+        <a href="#token" onclick="toggleMobile()">Token</a>
+        <a href="#how" onclick="toggleMobile()">How</a>
+        <button class="wallet-btn" onclick="connectWallet()">Connect Wallet</button>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        
+        <div class="pixel-shapes">
+            <div class="pixel-shape square"></div>
+            <div class="pixel-shape rect"></div>
+            <div class="pixel-shape square"></div>
+            <div class="pixel-shape rect"></div>
+            <div class="pixel-shape square"></div>
+            <div class="pixel-shape rect"></div>
+        </div>
+
+        <div class="flying-coins" id="flyingCoins"></div>
+        <div class="stars" id="stars"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="blink-dot"></div>
+                <span>Live on SUI</span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="line">STAKE.</span>
+                <span class="line gold">FLUSH.</span>
+                <span class="line cyan">WIN.</span>
+            </h1>
+
+            <p class="hero-desc">
+                Next-gen staking & lottery protocol on Sui. One ticket. One winner. Pure on-chain luck.
+            </p>
+
+            <div class="hero-btns">
+                <a href="#machine" class="btn btn-primary">▶ ENTER LOTTERY</a>
+                <a href="#token" class="btn btn-secondary">LEARN MORE</a>
+            </div>
+
+            <div class="hero-mascot">
+                <div class="mascot-container">
+                    <img src="assets/mascot-hero.jpg" alt="TD2" class="mascot-img">
+                    <div class="mascot-sparkles">
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLOT MACHINE -->
+    <section class="slot-section" id="machine">
+        <div class="section-header reveal">
+            <div class="section-tag">[ THE FLUSH MACHINE ]</div>
+            <h2 class="section-title"><span class="gold-text">PULL</span> • MATCH • <span class="gold-text">WIN</span></h2>
+        </div>
+
+        <div class="slot-layout reveal">
+            <!-- LEFT: INFO PANEL -->
+            <div class="slot-info-panel">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-icon">📋</span>
+                        <h3>HOW TO PLAY</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="info-step">
+                            <span class="step-num">1</span>
+                            <span>Connect your SUI wallet</span>
+                        </div>
+                        <div class="info-step">
+                            <span class="step-num">2</span>
+                            <span>Pay 1 SUI entry fee</span>
+                        </div>
+                        <div class="info-step">
+                            <span class="step-num">3</span>
+                            <span>Pull the lever & spin!</span>
+                        </div>
+                        <div class="info-step">
+                            <span class="step-num">4</span>
+                            <span>Match 3 symbols = JACKPOT!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-icon">🎰</span>
+                        <h3>WINNING ODDS</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="odds-row">
+                            <span>🚽🚽🚽</span>
+                            <span class="odds-value">100 SUI</span>
+                        </div>
+                        <div class="odds-row">
+                            <span>💰💰💰</span>
+                            <span class="odds-value">100 SUI</span>
+                        </div>
+                        <div class="odds-row">
+                            <span>💎💎💎</span>
+                            <span class="odds-value">100 SUI</span>
+                        </div>
+                        <div class="odds-divider"></div>
+                        <div class="odds-note">
+                            Win Rate: <span class="gold-text">1/100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card balance-card">
+                    <div class="info-card-header">
+                        <span class="info-icon">💳</span>
+                        <h3>YOUR BALANCE</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="balance-display" id="balanceDisplay">
+                            <span class="balance-value">--</span>
+                            <span class="balance-label">SUI</span>
+                        </div>
+                        <div class="balance-note" id="balanceNote">Connect wallet to view</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CENTER: ARCADE CABINET -->
+            <div class="arcade-cabinet">
+                <div class="cabinet-top">
+                    <div class="cabinet-lights">
+                        <div class="cabinet-light"></div>
+                        <div class="cabinet-light"></div>
+                        <div class="cabinet-light"></div>
+                        <div class="cabinet-light"></div>
+                        <div class="cabinet-light"></div>
+                    </div>
+                </div>
+
+                <div class="cabinet-body">
+                    <div class="screen-frame">
+                        <div class="crt-screen">
+                            <div class="jackpot-display">
+                                <div class="jackpot-label">★ JACKPOT ★</div>
+                                <div class="jackpot-value">100 SUI</div>
+                            </div>
+
+                            <div class="reels-area">
+                                <div class="win-line" id="winLine"></div>
+                                <div class="reel-container">
+                                    <div class="reel" id="reel1"><span class="reel-symbol">🚽</span></div>
+                                    <div class="reel-light"></div>
+                                </div>
+                                <div class="reel-container">
+                                    <div class="reel" id="reel2"><span class="reel-symbol">💰</span></div>
+                                    <div class="reel-light"></div>
+                                </div>
+                                <div class="reel-container">
+                                    <div class="reel" id="reel3"><span class="reel-symbol">⭐</span></div>
+                                    <div class="reel-light"></div>
+                                </div>
+                            </div>
+
+                            <div class="win-display" id="winDisplay">
+                                <span>★ JACKPOT WINNER ★</span>
+                            </div>
+
+                            <div class="slot-stats">
+                                <div class="stat-box">
+                                    <div class="label">ENTRY</div>
+                                    <div class="value">1 SUI</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="label">NEXT DRAW</div>
+                                    <div class="value" id="countdown">02:47:33</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="spin-btn" id="spinBtn" onclick="handleSpin()">
+                        ▶ PULL LEVER — 1 SUI
+                    </button>
+                </div>
+
+                <div class="cabinet-bottom">
+                    <div class="cabinet-coin-slot"></div>
+                    <div class="cabinet-coin-slot"></div>
+                </div>
+            </div>
+
+            <!-- RIGHT: RECENT WINS -->
+            <div class="slot-info-panel">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-icon">🏆</span>
+                        <h3>RECENT WINS</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="recent-win">
+                            <span class="win-addr">0x7a3f...8b2c</span>
+                            <span class="win-amount">+100 SUI</span>
+                        </div>
+                        <div class="recent-win">
+                            <span class="win-addr">0x9c1d...4e5f</span>
+                            <span class="win-amount">+100 SUI</span>
+                        </div>
+                        <div class="recent-win">
+                            <span class="win-addr">0x2b8e...1a9d</span>
+                            <span class="win-amount">+100 SUI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="info-icon">📊</span>
+                        <h3>STATS</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="stat-row">
+                            <span>Entry Fee</span>
+                            <span class="stat-value">1 SUI</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Jackpot</span>
+                            <span class="stat-value">100 SUI</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Win Rate</span>
+                            <span class="stat-value">1/100</span>
+                        </div>
+                        <div class="stat-row treasury-row">
+                            <span>Treasury</span>
+                            <span class="stat-value treasury-addr" title="0x972332e8ada870675bf7e878f186d46566b6a6d8adca57ba1c5d25d69616542b">0x9723...42b</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card sound-card">
+                    <div class="info-card-header">
+                        <span class="info-icon">🔊</span>
+                        <h3>SOUND</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <button class="sound-toggle" id="soundToggle" onclick="toggleSound()">
+                            <span id="soundIcon">🔊</span>
+                            <span id="soundText">ON</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="section-header reveal">
+            <div class="section-tag">[ FEATURES ]</div>
+            <h2 class="section-title">WHAT IS <span class="gold-text">TD2</span>?</h2>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card reveal">
+                <img src="assets/mascot-2.jpg" alt="Lottery" class="about-card-img">
+                <h3>DECENTRALIZED LOTTERY</h3>
+                <p>Provably fair draws using on-chain randomness. No middlemen.</p>
+            </div>
+            <div class="about-card reveal">
+                <img src="assets/mascot-3.jpg" alt="Staking" class="about-card-img">
+                <h3>HIGH YIELD STAKING</h3>
+                <p>Stake TD2 tokens and earn passive rewards every epoch.</p>
+            </div>
+            <div class="about-card reveal">
+                <img src="assets/mascot-4.jpg" alt="Community" class="about-card-img">
+                <h3>COMMUNITY DRIVEN</h3>
+                <p>Governance by holders. The community decides.</p>
+            </div>
+            <div class="about-card reveal">
+                <img src="assets/mascot-5.jpg" alt="Fast" class="about-card-img">
+                <h3>LIGHTNING FAST</h3>
+                <p>Sub-second finality on Sui. Low fees, instant settlement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOKEN -->
+    <section class="token-section" id="token">
+        <div class="section-header reveal">
+            <div class="section-tag">[ TOKENOMICS ]</div>
+            <h2 class="section-title gold-text">$TD2 TOKEN</h2>
+        </div>
+
+        <div class="token-card reveal">
+            <img src="assets/mascot-token.jpg" alt="TD2" class="token-mascot">
+            <div class="token-grid">
+                <div class="token-stat">
+                    <div class="label">SYMBOL</div>
+                    <div class="value">$TD2</div>
+                </div>
+                <div class="token-stat">
+                    <div class="label">NETWORK</div>
+                    <div class="value">SUI</div>
+                </div>
+                <div class="token-stat">
+                    <div class="label">UTILITY</div>
+                    <div class="value">STAKE/LOTTERY</div>
+                </div>
+                <div class="token-stat">
+                    <div class="label">SUPPLY</div>
+                    <div class="value">10,000,000,000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="how-section" id="how">
+        <div class="section-header reveal">
+            <div class="section-tag">[ GET STARTED ]</div>
+            <h2 class="section-title">HOW IT <span class="gold-text">WORKS</span></h2>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card reveal">
+                <div class="step-num">01</div>
+                <h3>CONNECT</h3>
+                <p>Link your Sui wallet</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">02</div>
+                <h3>STAKE</h3>
+                <p>Stake TD2 tokens</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">03</div>
+                <h3>ENTER</h3>
+                <h3>Buy a ticket</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">04</div>
+                <h3>WIN</h3>
+                <p>Collect rewards</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="community-section" id="community">
+        <div class="community-video-bg">
+            <video class="community-video" autoplay muted loop playsinline>
+                <source src="assets/hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="community-overlay"></div>
+        </div>
+
+        <div class="community-content">
+            <div class="section-header reveal">
+                <div class="section-tag">[ JOIN US ]</div>
+                <h2 class="section-title gold-text">COMMUNITY</h2>
+            </div>
+
+            <div class="social-grid">
+                <a href="https://x.com/toiletdustsui2" target="_blank" class="social-card reveal">
+                    <span class="social-icon">𝕏</span>
+                    <div class="social-name">TWITTER</div>
+                    <div class="social-handle">@toiletdustsui2</div>
+                </a>
+                <a href="https://t.me/ToiletDustTD2" target="_blank" class="social-card reveal">
+                    <span class="social-icon">✈️</span>
+                    <div class="social-name">TELEGRAM</div>
+                    <div class="social-handle">t.me/ToiletDustTD2</div>
+                </a>
+         
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">🚽</div>
+                <span class="logo-text gold-text">TD2</span>
+            </a>
+            <div class="footer-links">
+                <a href="#">DOCS</a>
+                <a href="#">GITHUB</a>
+                <a href="https://x.com/toiletdustsui2">X</a>
+                <a href="https://t.me/ToiletDustTD2">TELEGRAM</a>
+            </div>
+            <div class="footer-copy">© 2026 TD2 — BUILT ON SUI</div>
+        </div>
+    </footer>
+
+    <!-- Import wallet-standard from ESM CDN -->
+    <script type="module">
+        import { getWallets } from 'https://esm.sh/@wallet-standard/app@1.1.0';
+        import { Transaction } from 'https://esm.sh/@mysten/sui@1.18.0/transactions';
+        
+        // Make them globally available
+        window.walletStandard = { getWallets };
+        window.SuiTransaction = Transaction;
+        
+        // Initialize immediately
+        const api = getWallets();
+        window.walletsAPI = api;
+        
+        console.log('[TD2] Wallet Standard loaded');
+        console.log('[TD2] SUI Transaction SDK loaded');
+        console.log('[TD2] Initial wallets:', api.get().map(w => w.name));
+        
+        // Listen for new wallets
+        api.on('register', (...wallets) => {
+            console.log('[TD2] New wallets registered:', wallets.map(w => w.name));
+        });
+        
+        // Dispatch ready event
+        window.dispatchEvent(new Event('wallet-standard-ready'));
+    </script>
+
+    <script>
+        // ══════════════════════════════════════════════════════════
+        // FLYING COINS
+        // ══════════════════════════════════════════════════════════
+        const coinsContainer = document.getElementById('flyingCoins');
+        const coinEmojis = ['🪙', '💰', '💎', '⭐'];
+        for (let i = 0; i < 15; i++) {
+            const coin = document.createElement('div');
+            coin.className = 'coin';
+            coin.textContent = coinEmojis[Math.floor(Math.random() * coinEmojis.length)];
+            coin.style.left = Math.random() * 100 + '%';
+            coin.style.animationDelay = Math.random() * 6 + 's';
+            coin.style.animationDuration = (5 + Math.random() * 4) + 's';
+            coinsContainer.appendChild(coin);
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // STARS
+        // ══════════════════════════════════════════════════════════
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // SCROLL REVEAL
+        // ══════════════════════════════════════════════════════════
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, idx) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), idx * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ══════════════════════════════════════════════════════════
+        // SMOOTH SCROLL
+        // ══════════════════════════════════════════════════════════
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // ══════════════════════════════════════════════════════════
+        // MOBILE MENU
+        // ══════════════════════════════════════════════════════════
+        function toggleMobile() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // TOAST
+        // ══════════════════════════════════════════════════════════
+        function showToast(msg, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = 'toast ' + type + ' show';
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // COUNTDOWN
+        // ══════════════════════════════════════════════════════════
+        let time = { h: 2, m: 47, s: 33 };
+        setInterval(() => {
+            time.s--;
+            if (time.s < 0) { time.s = 59; time.m--; }
+            if (time.m < 0) { time.m = 59; time.h--; }
+            if (time.h < 0) { time = { h: 23, m: 59, s: 59 }; }
+            const pad = n => n.toString().padStart(2, '0');
+            document.getElementById('countdown').textContent = `${pad(time.h)}:${pad(time.m)}:${pad(time.s)}`;
+        }, 1000);
+
+        // ══════════════════════════════════════════════════════════
+        // WALLET CONNECTION (Multiple Detection Methods)
+        // ══════════════════════════════════════════════════════════
+        const TREASURY = "0x972332e8ada870675bf7e878f186d46566b6a6d8adca57ba1c5d25d69616542b";
+        let connectedWallet = null;
+        let connectedAccount = null;
+
+        async function connectWallet() {
+            const btn = document.getElementById('walletBtn');
+            const txt = document.getElementById('walletText');
+
+            // Disconnect if already connected
+            if (connectedAccount) {
+                try {
+                    if (connectedWallet?.features?.['standard:disconnect']) {
+                        await connectedWallet.features['standard:disconnect'].disconnect();
+                    }
+                } catch(e) { console.log('[TD2] Disconnect error:', e); }
+                
+                connectedWallet = null;
+                connectedAccount = null;
+                btn.classList.remove('connected');
+                txt.textContent = 'Connect';
+                
+                // Clear balance display
+                updateBalanceDisplay(null);
+                
+                showToast('Disconnected', 'info');
+                return;
+            }
+
+            console.log('[TD2] Attempting to connect wallet...');
+            
+            // Method 1: Use wallet-standard API if available
+            if (window.walletsAPI) {
+                const wallets = window.walletsAPI.get();
+                console.log('[TD2] Method 1 - wallet-standard API found wallets:', wallets.map(w => ({ name: w.name, chains: w.chains })));
+                
+                // Filter for SUI wallets ONLY - must have sui chain
+                const suiWallets = wallets.filter(w => {
+                    if (!w.chains || w.chains.length === 0) return false;
+                    // Check if ANY chain includes 'sui'
+                    const hasSui = w.chains.some(chain => 
+                        chain === 'sui:mainnet' || 
+                        chain === 'sui:testnet' || 
+                        chain === 'sui:devnet' ||
+                        chain === 'sui:localnet' ||
+                        chain.startsWith('sui:')
+                    );
+                    console.log(`[TD2] Wallet "${w.name}" chains:`, w.chains, '-> hasSui:', hasSui);
+                    return hasSui;
+                });
+                
+                console.log('[TD2] SUI-compatible wallets:', suiWallets.map(w => w.name));
+                
+                if (suiWallets.length > 0) {
+                    // Prefer Slush if available
+                    const slush = suiWallets.find(w => 
+                        w.name.toLowerCase().includes('slush') || 
+                        w.name.toLowerCase().includes('sui')
+                    );
+                    const walletToUse = slush || suiWallets[0];
+                    console.log('[TD2] Using wallet:', walletToUse.name);
+                    await tryConnect(walletToUse, btn, txt);
+                    return;
+                } else {
+                    console.log('[TD2] No SUI wallets found in wallet-standard');
+                }
+            }
+            
+            // Method 2: Check for Slush/Sui wallet global objects
+            console.log('[TD2] Method 2 - Checking global objects...');
+            console.log('[TD2] window.slush:', typeof window.slush);
+            console.log('[TD2] window.suiWallet:', typeof window.suiWallet);
+            console.log('[TD2] window.sui:', typeof window.sui);
+            
+            // Method 3: Look for wallets in navigator.wallets (legacy)
+            if (window.navigator?.wallets) {
+                console.log('[TD2] Method 3 - navigator.wallets found');
+                try {
+                    const navWallets = Array.isArray(window.navigator.wallets) 
+                        ? window.navigator.wallets 
+                        : [];
+                    console.log('[TD2] navigator.wallets:', navWallets);
+                } catch(e) {
+                    console.log('[TD2] navigator.wallets error:', e);
+                }
+            }
+            
+            // Method 4: Check for extension injected globals
+            const possibleGlobals = ['slush', 'suiWallet', 'sui', 'slushWallet', 'SuiWallet'];
+            for (const name of possibleGlobals) {
+                if (window[name]) {
+                    console.log(`[TD2] Found global: window.${name}`, window[name]);
+                    
+                    // Try to use it if it has connect method
+                    if (typeof window[name].connect === 'function') {
+                        try {
+                            showToast('Connecting...', 'info');
+                            const result = await window[name].connect();
+                            console.log('[TD2] Connect result:', result);
+                            
+                            if (result?.accounts?.length > 0 || result?.address) {
+                                const addr = result.accounts?.[0]?.address || result.address;
+                                connectedAccount = { address: addr };
+                                connectedWallet = window[name];
+                                btn.classList.add('connected');
+                                txt.textContent = addr.slice(0, 4) + '..' + addr.slice(-4);
+                                showToast('Connected!', 'success');
+                                return;
+                            }
+                        } catch(e) {
+                            console.log(`[TD2] ${name}.connect() failed:`, e);
+                        }
+                    }
+                    
+                    // Try requestPermissions pattern (old Sui Wallet)
+                    if (typeof window[name].requestPermissions === 'function') {
+                        try {
+                            showToast('Requesting permissions...', 'info');
+                            await window[name].requestPermissions();
+                            const accounts = await window[name].getAccounts();
+                            console.log('[TD2] getAccounts result:', accounts);
+                            
+                            if (accounts?.length > 0) {
+                                connectedAccount = { address: accounts[0] };
+                                connectedWallet = window[name];
+                                btn.classList.add('connected');
+                                txt.textContent = accounts[0].slice(0, 4) + '..' + accounts[0].slice(-4);
+                                showToast('Connected!', 'success');
+                                return;
+                            }
+                        } catch(e) {
+                            console.log(`[TD2] ${name}.requestPermissions() failed:`, e);
+                        }
+                    }
+                }
+            }
+            
+            // No wallet found - show instructions
+            console.log('[TD2] No wallet found with any method');
+            
+            const isLocalFile = window.location.protocol === 'file:';
+            if (isLocalFile) {
+                alert(
+                    '⚠️ Local File Detected!\n\n' +
+                    'Wallet extensions may not work with file:// URLs.\n\n' +
+                    'Please serve this site through a web server:\n' +
+                    '• npx serve .\n' +
+                    '• python -m http.server\n' +
+                    '• Use VS Code Live Server\n\n' +
+                    'Or deploy to a hosting service.'
+                );
+            } else {
+                if (confirm('No SUI wallet found!\n\nInstall Slush wallet?')) {
+                    window.open('https://chromewebstore.google.com/detail/slush-%E2%80%94-a-sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil', '_blank');
+                }
+            }
+        }
+
+        async function tryConnect(wallet, btn, txt) {
+            console.log('[TD2] Trying to connect to:', wallet.name);
+            
+            try {
+                if (wallet.features?.['standard:connect']) {
+                    showToast('Connecting to ' + wallet.name + '...', 'info');
+                    
+                    const result = await wallet.features['standard:connect'].connect();
+                    console.log('[TD2] Connect result:', result);
+                    
+                    const accounts = result?.accounts || wallet.accounts || [];
+                    
+                    if (accounts.length > 0) {
+                        connectedWallet = wallet;
+                        connectedAccount = accounts[0];
+                        const addr = connectedAccount.address;
+                        btn.classList.add('connected');
+                        txt.textContent = addr.slice(0, 4) + '..' + addr.slice(-4);
+                        showToast('Connected to ' + wallet.name + '!', 'success');
+                        
+                        // Fetch balance
+                        fetchBalance(addr);
+                        
+                        return true;
+                    } else {
+                        showToast('No accounts authorized', 'error');
+                    }
+                } else {
+                    console.log('[TD2] Wallet features:', Object.keys(wallet.features || {}));
+                    showToast('Wallet missing connect feature', 'error');
+                }
+            } catch (e) {
+                console.error('[TD2] Connection error:', e);
+                showToast('Connection failed: ' + e.message, 'error');
+            }
+            return false;
+        }
+
+        // Fetch SUI balance from RPC
+        async function fetchBalance(address) {
+            try {
+                const response = await fetch('https://fullnode.mainnet.sui.io:443', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        jsonrpc: '2.0',
+                        id: 1,
+                        method: 'suix_getBalance',
+                        params: [address, '0x2::sui::SUI']
+                    })
+                });
+                
+                const data = await response.json();
+                console.log('[TD2] Balance response:', data);
+                
+                if (data.result?.totalBalance) {
+                    updateBalanceDisplay(parseInt(data.result.totalBalance));
+                } else {
+                    updateBalanceDisplay(0);
+                }
+            } catch (e) {
+                console.error('[TD2] Balance fetch error:', e);
+                updateBalanceDisplay(null);
+            }
+        }
+
+        // Auto-connect on page load if wallet already authorized
+        window.addEventListener('wallet-standard-ready', () => {
+            console.log('[TD2] wallet-standard-ready event fired');
+            
+            if (window.walletsAPI) {
+                const wallets = window.walletsAPI.get();
+                
+                for (const wallet of wallets) {
+                    if (wallet.accounts?.length > 0 && wallet.chains?.some(c => c.includes('sui'))) {
+                        console.log('[TD2] Auto-connecting to:', wallet.name);
+                        connectedWallet = wallet;
+                        connectedAccount = wallet.accounts[0];
+                        const btn = document.getElementById('walletBtn');
+                        const txt = document.getElementById('walletText');
+                        if (btn && txt) {
+                            btn.classList.add('connected');
+                            txt.textContent = connectedAccount.address.slice(0, 4) + '..' + connectedAccount.address.slice(-4);
+                            
+                            // Fetch balance for auto-connected wallet
+                            fetchBalance(connectedAccount.address);
+                        }
+                        break;
+                    }
+                }
+            }
+        });
+
+        // ══════════════════════════════════════════════════════════
+        // SOUND EFFECTS (Web Audio API)
+        // ══════════════════════════════════════════════════════════
+        let audioContext = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled || !audioContext) return;
+            
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            const now = audioContext.currentTime;
+            
+            switch(type) {
+                case 'spin':
+                    // Slot machine spinning whir
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(200, now);
+                    osc.frequency.linearRampToValueAtTime(800, now + 0.1);
+                    osc.frequency.linearRampToValueAtTime(200, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.linearRampToValueAtTime(0, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                    break;
+                    
+                case 'tick':
+                    // Reel tick sound
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(800, now);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                    break;
+                    
+                case 'stop':
+                    // Reel stop thunk
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(150, now);
+                    osc.frequency.exponentialRampToValueAtTime(50, now + 0.15);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                    break;
+                    
+                case 'win':
+                    // Jackpot fanfare
+                    const notes = [523, 659, 784, 1047]; // C5, E5, G5, C6
+                    notes.forEach((freq, i) => {
+                        const o = audioContext.createOscillator();
+                        const g = audioContext.createGain();
+                        o.connect(g);
+                        g.connect(audioContext.destination);
+                        o.type = 'square';
+                        o.frequency.setValueAtTime(freq, now + i * 0.15);
+                        g.gain.setValueAtTime(0.15, now + i * 0.15);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.15 + 0.3);
+                        o.start(now + i * 0.15);
+                        o.stop(now + i * 0.15 + 0.3);
+                    });
+                    return; // Don't start main oscillator
+                    
+                case 'lose':
+                    // Sad trombone wah-wah
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.linearRampToValueAtTime(200, now + 0.3);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                    break;
+                    
+                case 'coin':
+                    // Coin insert sound
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(1200, now);
+                    osc.frequency.setValueAtTime(1500, now + 0.05);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                    break;
+                    
+                case 'error':
+                    // Error buzz
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(100, now);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.setValueAtTime(0, now + 0.1);
+                    gain.gain.setValueAtTime(0.15, now + 0.15);
+                    gain.gain.setValueAtTime(0, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                    break;
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('soundToggle');
+            const icon = document.getElementById('soundIcon');
+            const text = document.getElementById('soundText');
+            
+            if (soundEnabled) {
+                initAudio();
+                btn.classList.remove('off');
+                icon.textContent = '🔊';
+                text.textContent = 'ON';
+                playSound('coin');
+            } else {
+                btn.classList.add('off');
+                icon.textContent = '🔇';
+                text.textContent = 'OFF';
+            }
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // SLOT MACHINE WITH REAL TRANSACTIONS
+        // ══════════════════════════════════════════════════════════
+        const SYMBOLS = ['🚽', '💰', '⭐', '💎', '🪙', '🔥', '🎰', '👑'];
+        const ENTRY_FEE_SUI = 1; // 1 SUI
+        const ENTRY_FEE_MIST = 1000000000; // 1 SUI = 1,000,000,000 MIST
+        const JACKPOT_AMOUNT = 100; // 100 SUI
+        const WIN_CHANCE = 100; // 1 in 100 chance
+        
+        // TREASURY WALLET - where entry fees go and jackpots are paid from
+        const TREASURY_ADDRESS = "0x972332e8ada870675bf7e878f186d46566b6a6d8adca57ba1c5d25d69616542b";
+        
+        let spinning = false;
+        let intervals = [];
+        let tickInterval = null;
+        let userBalance = null;
+        let userBalanceMist = null;
+
+        // Update balance display
+        function updateBalanceDisplay(balanceMist) {
+            const balanceValue = document.querySelector('.balance-value');
+            const balanceNote = document.getElementById('balanceNote');
+            
+            if (balanceMist === null) {
+                userBalance = null;
+                userBalanceMist = null;
+                balanceValue.textContent = '--';
+                balanceNote.textContent = 'Connect wallet to view';
+                balanceNote.className = 'balance-note';
+            } else {
+                userBalanceMist = balanceMist;
+                userBalance = balanceMist / 1000000000; // Convert MIST to SUI
+                balanceValue.textContent = userBalance.toFixed(4);
+                
+                if (userBalance < ENTRY_FEE_SUI) {
+                    balanceNote.textContent = 'Insufficient balance!';
+                    balanceNote.className = 'balance-note low';
+                } else {
+                    balanceNote.textContent = 'Ready to play!';
+                    balanceNote.className = 'balance-note ok';
+                }
+            }
+        }
+
+        async function handleSpin() {
+            if (spinning) return;
+            
+            // Initialize audio on first interaction
+            initAudio();
+            
+            // Check wallet connection
+            if (!connectedAccount) {
+                playSound('error');
+                showToast('Connect wallet first!', 'error');
+                return;
+            }
+
+            // Check balance
+            if (userBalance === null) {
+                playSound('error');
+                showToast('Balance not loaded. Please wait...', 'error');
+                // Try to fetch balance
+                await fetchBalance(connectedAccount.address);
+                return;
+            }
+            
+            if (userBalance < ENTRY_FEE_SUI) {
+                playSound('error');
+                showToast(`Need at least ${ENTRY_FEE_SUI} SUI to play!`, 'error');
+                return;
+            }
+
+            // Check if wallet supports signing
+            if (!connectedWallet?.features?.['sui:signAndExecuteTransactionBlock'] && 
+                !connectedWallet?.features?.['sui:signAndExecuteTransaction']) {
+                playSound('error');
+                showToast('Wallet does not support transactions!', 'error');
+                console.log('[TD2] Wallet features:', Object.keys(connectedWallet?.features || {}));
+                return;
+            }
+
+            // Check if Transaction SDK is loaded
+            if (!window.SuiTransaction) {
+                playSound('error');
+                showToast('Transaction SDK not loaded. Please refresh.', 'error');
+                return;
+            }
+
+            // Play coin insert sound
+            playSound('coin');
+            showToast('Please approve the transaction...', 'info');
+            
+            const btn = document.getElementById('spinBtn');
+            btn.disabled = true;
+            btn.textContent = '▶ WAITING FOR APPROVAL...';
+
+            try {
+                // ═══════════════════════════════════════════════════════
+                // BUILD THE TRANSACTION
+                // ═══════════════════════════════════════════════════════
+                const tx = new window.SuiTransaction();
+                
+                // Split 1 SUI from the gas coin
+                const [coin] = tx.splitCoins(tx.gas, [ENTRY_FEE_MIST]);
+                
+                // Transfer to treasury
+                tx.transferObjects([coin], TREASURY_ADDRESS);
+                
+                console.log('[TD2] Transaction built:', {
+                    entryFee: ENTRY_FEE_MIST,
+                    treasury: TREASURY_ADDRESS
+                });
+
+                // ═══════════════════════════════════════════════════════
+                // SIGN AND EXECUTE
+                // ═══════════════════════════════════════════════════════
+                let result;
+                
+                // Try newer API first (sui:signAndExecuteTransaction)
+                if (connectedWallet.features['sui:signAndExecuteTransaction']) {
+                    console.log('[TD2] Using sui:signAndExecuteTransaction');
+                    result = await connectedWallet.features['sui:signAndExecuteTransaction'].signAndExecuteTransaction({
+                        transaction: tx,
+                        account: connectedAccount,
+                        chain: 'sui:mainnet'
+                    });
+                } 
+                // Fall back to older API (sui:signAndExecuteTransactionBlock)
+                else if (connectedWallet.features['sui:signAndExecuteTransactionBlock']) {
+                    console.log('[TD2] Using sui:signAndExecuteTransactionBlock');
+                    result = await connectedWallet.features['sui:signAndExecuteTransactionBlock'].signAndExecuteTransactionBlock({
+                        transactionBlock: tx,
+                        account: connectedAccount,
+                        chain: 'sui:mainnet'
+                    });
+                }
+
+                console.log('[TD2] Transaction result:', result);
+
+                // Check if transaction was successful
+                if (result?.digest) {
+                    showToast(`TX confirmed: ${result.digest.slice(0, 8)}...`, 'success');
+                    
+                    // Refresh balance after transaction
+                    setTimeout(() => {
+                        fetchBalance(connectedAccount.address);
+                    }, 2000);
+                    
+                    // Start the spin!
+                    startSpin();
+                } else {
+                    throw new Error('Transaction failed - no digest returned');
+                }
+
+            } catch (error) {
+                console.error('[TD2] Transaction error:', error);
+                playSound('error');
+                
+                // Handle user rejection
+                if (error.message?.includes('rejected') || error.message?.includes('cancelled') || error.message?.includes('denied')) {
+                    showToast('Transaction cancelled by user', 'info');
+                } else {
+                    showToast(`Transaction failed: ${error.message || 'Unknown error'}`, 'error');
+                }
+                
+                btn.disabled = false;
+                btn.textContent = `▶ PULL LEVER — ${ENTRY_FEE_SUI} SUI`;
+            }
+        }
+
+        function startSpin() {
+            spinning = true;
+            const btn = document.getElementById('spinBtn');
+            const winDisplay = document.getElementById('winDisplay');
+            const winLine = document.getElementById('winLine');
+            const reels = ['reel1', 'reel2', 'reel3'].map(id => document.getElementById(id));
+
+            btn.disabled = true;
+            btn.textContent = '▶ SPINNING...';
+            winDisplay.classList.remove('show');
+            winLine.classList.remove('active');
+            reels.forEach(r => r.classList.remove('winner'));
+
+            reels.forEach(r => r.classList.add('spinning'));
+
+            // Play spinning sound
+            playSound('spin');
+            
+            // Continuous tick sounds while spinning
+            tickInterval = setInterval(() => {
+                playSound('tick');
+            }, 100);
+
+            intervals = reels.map(reel => {
+                return setInterval(() => {
+                    reel.querySelector('.reel-symbol').textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                }, 60);
+            });
+
+            // Determine win (1 in WIN_CHANCE)
+            const isJackpot = Math.floor(Math.random() * WIN_CHANCE) === 0;
+            let results;
+
+            if (isJackpot) {
+                const winSym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                results = [winSym, winSym, winSym];
+            } else {
+                do {
+                    results = [0, 1, 2].map(() => SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]);
+                } while (results[0] === results[1] && results[1] === results[2]);
+            }
+
+            // Stop reels with delay
+            setTimeout(() => {
+                clearInterval(intervals[0]);
+                reels[0].classList.remove('spinning');
+                reels[0].querySelector('.reel-symbol').textContent = results[0];
+                playSound('stop');
+            }, 1500);
+
+            setTimeout(() => {
+                clearInterval(intervals[1]);
+                reels[1].classList.remove('spinning');
+                reels[1].querySelector('.reel-symbol').textContent = results[1];
+                playSound('stop');
+            }, 2000);
+
+            setTimeout(() => {
+                clearInterval(intervals[2]);
+                reels[2].classList.remove('spinning');
+                reels[2].querySelector('.reel-symbol').textContent = results[2];
+                playSound('stop');
+                
+                // Stop tick sounds
+                clearInterval(tickInterval);
+
+                setTimeout(() => {
+                    spinning = false;
+                    btn.disabled = false;
+                    btn.textContent = `▶ PULL LEVER — ${ENTRY_FEE_SUI} SUI`;
+
+                    if (isJackpot) {
+                        winLine.classList.add('active');
+                        winDisplay.classList.add('show');
+                        reels.forEach(r => r.classList.add('winner'));
+                        playSound('win');
+                        showToast(`🎉 JACKPOT! ${JACKPOT_AMOUNT} SUI! 🎉`, 'success');
+                        
+                        // Note: In production, the smart contract would automatically
+                        // send the jackpot from treasury to the winner's address
+                        // For now, we just show the winning animation
+                        
+                        // Confetti explosion
+                        for (let i = 0; i < 50; i++) {
+                            createConfetti();
+                        }
+                        
+                        // Refresh balance (jackpot would be received)
+                        setTimeout(() => {
+                            fetchBalance(connectedAccount.address);
+                        }, 3000);
+                    } else {
+                        playSound('lose');
+                    }
+                }, 300);
+            }, 2500);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                width: 10px;
+                height: 10px;
+                background: hsl(${Math.random() * 360}, 100%, 50%);
+                pointer-events: none;
+                z-index: 9999;
+                animation: confettiExplode 1s ease-out forwards;
+            `;
+            document.body.appendChild(confetti);
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 200 + Math.random() * 300;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+            
+            confetti.animate([
+                { transform: 'translate(0, 0) rotate(0deg)', opacity: 1 },
+                { transform: `translate(${tx}px, ${ty}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+            ], { duration: 1000, easing: 'ease-out' });
+            
+            setTimeout(() => confetti.remove(), 1000);
+        }
+    </script>
+</body>
 </html>
