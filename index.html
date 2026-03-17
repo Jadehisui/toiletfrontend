@@ -828,6 +828,52 @@
             padding-top: 12px !important;
         }
 
+        /* Stake card */
+        .stake-card .info-card-body {
+            text-align: center;
+        }
+
+        .stake-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .stake-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+            border: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--blue-deep);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 #8B6914;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .stake-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #8B6914;
+        }
+
+        .stake-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #8B6914;
+        }
+
+        .stake-info {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -1438,6 +1484,168 @@
             margin-top: 0.4rem;
         }
 
+        /* Distribution Cards */
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            padding: 0 1rem;
+        }
+
+        .distribution-card {
+            background: var(--blue-mid);
+            border: 3px solid var(--gold);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 4px 4px 0 var(--gold-dark);
+            transition: all 0.3s;
+        }
+
+        .distribution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 10px 0 var(--gold-dark);
+        }
+
+        .distribution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .distribution-card.community::before {
+            background: linear-gradient(90deg, var(--green), var(--blue-glow));
+        }
+
+        .distribution-card.strategic::before {
+            background: linear-gradient(90deg, var(--gold), var(--magenta));
+        }
+
+        .distribution-card.staking::before {
+            background: linear-gradient(90deg, var(--magenta), var(--blue-glow));
+        }
+
+        .dist-percent {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0 20px var(--gold);
+        }
+
+        .dist-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.55rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .dist-desc {
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.4;
+        }
+
+        .dist-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.2);
+            text-align: left;
+        }
+
+        .detail-item {
+            font-family: 'VT323', monospace;
+            font-size: 0.95rem;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .distribution-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .dist-percent {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Buy Token CTA */
+        .token-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .buy-token-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 50px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+            border: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--blue-deep);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 0 #8B6914, 0 10px 30px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-token-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: btnShine 2s linear infinite;
+        }
+
+        .buy-token-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 0 #8B6914, 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .buy-token-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #8B6914;
+        }
+
+        .buy-token-btn .btn-icon {
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .buy-token-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .token-cta-note {
+            margin-top: 1rem;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
         /* HOW SECTION */
         .how-section {
             padding: 6rem 2rem;
@@ -1567,8 +1775,17 @@
         .social-icon {
             font-size: 2.5rem;
             margin-bottom: 0.75rem;
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold);
             animation: socialBounce 2s ease-in-out infinite;
+        }
+
+        .social-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--gold);
         }
 
         @keyframes socialBounce {
@@ -1776,7 +1993,6 @@
                 <button class="wallet-btn" id="walletBtn" onclick="connectWallet()">
                     <span id="walletText">Connect</span>
                 </button>
-               
             </div>
             <button class="mobile-toggle" onclick="toggleMobile()">☰</button>
         </div>
@@ -1877,31 +2093,6 @@
                     </div>
                 </div>
 
-                <div class="info-card">
-                    <div class="info-card-header">
-                        <span class="info-icon">🎰</span>
-                        <h3>WINNING ODDS</h3>
-                    </div>
-                    <div class="info-card-body">
-                        <div class="odds-row">
-                            <span>🚽🚽🚽</span>
-                            <span class="odds-value">100 SUI</span>
-                        </div>
-                        <div class="odds-row">
-                            <span>💰💰💰</span>
-                            <span class="odds-value">100 SUI</span>
-                        </div>
-                        <div class="odds-row">
-                            <span>💎💎💎</span>
-                            <span class="odds-value">100 SUI</span>
-                        </div>
-                        <div class="odds-divider"></div>
-                        <div class="odds-note">
-                            Win Rate: <span class="gold-text">1/100</span>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="info-card balance-card">
                     <div class="info-card-header">
                         <span class="info-icon">💳</span>
@@ -1981,51 +2172,19 @@
                 </div>
             </div>
 
-            <!-- RIGHT: RECENT WINS -->
+            <!-- RIGHT: ACTIONS -->
             <div class="slot-info-panel">
-                <div class="info-card">
+                <div class="info-card stake-card">
                     <div class="info-card-header">
-                        <span class="info-icon">🏆</span>
-                        <h3>RECENT WINS</h3>
+                        <span class="info-icon">💎</span>
+                        <h3>STAKE TD2</h3>
                     </div>
                     <div class="info-card-body">
-                        <div class="recent-win">
-                            <span class="win-addr">0x7a3f...8b2c</span>
-                            <span class="win-amount">+100 SUI</span>
-                        </div>
-                        <div class="recent-win">
-                            <span class="win-addr">0x9c1d...4e5f</span>
-                            <span class="win-amount">+100 SUI</span>
-                        </div>
-                        <div class="recent-win">
-                            <span class="win-addr">0x2b8e...1a9d</span>
-                            <span class="win-amount">+100 SUI</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-card-header">
-                        <span class="info-icon">📊</span>
-                        <h3>STATS</h3>
-                    </div>
-                    <div class="info-card-body">
-                        <div class="stat-row">
-                            <span>Entry Fee</span>
-                            <span class="stat-value">1 SUI</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>Jackpot</span>
-                            <span class="stat-value">100 SUI</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>Win Rate</span>
-                            <span class="stat-value">1/100</span>
-                        </div>
-                        <div class="stat-row treasury-row">
-                            <span>Treasury</span>
-                            <span class="stat-value treasury-addr" title="0x972332e8ada870675bf7e878f186d46566b6a6d8adca57ba1c5d25d69616542b">0x9723...42b</span>
-                        </div>
+                        <p class="stake-desc">Stake your TD2 tokens to earn passive rewards every epoch!</p>
+                        <a href="stake.html" class="stake-btn">
+                            🔒 STAKE NOW
+                        </a>
+                        <div class="stake-info">10% of supply reserved for staking rewards</div>
                     </div>
                 </div>
 
@@ -2095,14 +2254,45 @@
                     <div class="value">SUI</div>
                 </div>
                 <div class="token-stat">
-                    <div class="label">UTILITY</div>
-                    <div class="value">STAKE/LOTTERY</div>
-                </div>
-                <div class="token-stat">
-                    <div class="label">SUPPLY</div>
+                    <div class="label">TOTAL SUPPLY</div>
                     <div class="value">10,000,000,000</div>
                 </div>
             </div>
+        </div>
+
+        <!-- Distribution Breakdown -->
+        <div class="distribution-grid reveal">
+            <div class="distribution-card community">
+                <div class="dist-percent">70%</div>
+                <div class="dist-title">Community & Liquidity</div>
+                <div class="dist-desc">Initial liquidity + public market supply</div>
+            </div>
+            
+            <div class="distribution-card strategic">
+                <div class="dist-percent">20%</div>
+                <div class="dist-title">Strategic Partnerships</div>
+                <div class="dist-desc">Allocated to KOLs and ecosystem partners</div>
+                <div class="dist-details">
+                    <div class="detail-item">🔒 Locked 30 days after launch</div>
+                    <div class="detail-item">📈 Linear vesting over 5 months</div>
+                    <div class="detail-item">🤝 KOLs, partners & ecosystem growth</div>
+                </div>
+            </div>
+            
+            <div class="distribution-card staking">
+                <div class="dist-percent">10%</div>
+                <div class="dist-title">Staking Rewards</div>
+                <div class="dist-desc">Custom staking system to reduce sell pressure and reward holders</div>
+            </div>
+        </div>
+
+        <!-- Stake Button -->
+        <div class="token-cta reveal">
+            <a href="stake.html" class="buy-token-btn">
+                <span class="btn-icon">🔒</span>
+                <span>STAKE $TD2</span>
+            </a>
+            <p class="token-cta-note">Earn passive rewards every epoch</p>
         </div>
     </section>
 
@@ -2154,16 +2344,28 @@
 
             <div class="social-grid">
                 <a href="https://x.com/toiletdustsui2" target="_blank" class="social-card reveal">
-                    <span class="social-icon">𝕏</span>
-                    <div class="social-name">TWITTER</div>
+                    <span class="social-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </span>
+                    <div class="social-name">X (TWITTER)</div>
                     <div class="social-handle">@toiletdustsui2</div>
                 </a>
                 <a href="https://t.me/ToiletDustTD2" target="_blank" class="social-card reveal">
-                    <span class="social-icon">✈️</span>
+                    <span class="social-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                    </span>
                     <div class="social-name">TELEGRAM</div>
                     <div class="social-handle">t.me/ToiletDustTD2</div>
                 </a>
-         
+                <a href="#" class="social-card reveal">
+                    <span class="social-icon">📊</span>
+                    <div class="social-name">CHART</div>
+                    <div class="social-handle">DexScreener</div>
+                </a>
             </div>
         </div>
     </section>
@@ -2177,7 +2379,6 @@
             </a>
             <div class="footer-links">
                 <a href="#">DOCS</a>
-                <a href="#">GITHUB</a>
                 <a href="https://x.com/toiletdustsui2">X</a>
                 <a href="https://t.me/ToiletDustTD2">TELEGRAM</a>
             </div>
@@ -2972,6 +3173,19 @@
             ], { duration: 1000, easing: 'ease-out' });
             
             setTimeout(() => confetti.remove(), 1000);
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // STAKING (Coming Soon)
+        // ══════════════════════════════════════════════════════════
+        function handleStake() {
+            if (!connectedAccount) {
+                showToast('Connect wallet first!', 'error');
+                return;
+            }
+            
+            // Staking feature coming soon
+            showToast('Staking coming soon! Stay tuned.', 'info');
         }
     </script>
 </body>
