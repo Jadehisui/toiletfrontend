@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TD2 | TOILET DUST 2.0 — STAKE. FLUSH. WIN.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=VT323&family=Bangers&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --blue-deep: #0a0a1a;
@@ -20,6 +20,9 @@
             --red: #ff3366;
             --white: #ffffff;
             --gray: #7a8599;
+            --vercel-bg: #0b0f19;
+            --vercel-yellow: #f59e0b;
+            --vercel-blue: #0ea5e9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -169,8 +172,8 @@
         }
 
         .logo-text {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.2rem;
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
             letter-spacing: 2px;
             animation: textPulse 2s ease-in-out infinite;
         }
@@ -279,6 +282,153 @@
         .buy-btn:active {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0 var(--gold-dark);
+        }
+
+        /* SWAP BUTTON */
+        .swap-nav-btn {
+            font-family: 'Press Start 2P', cursive;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            border: 3px solid #a78bfa;
+            color: #fff;
+            padding: 10px 16px;
+            font-size: 0.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.1s;
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+            animation: swapPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes swapPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(124, 58, 237, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.8); }
+        }
+
+        .swap-nav-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+        }
+
+        .swap-nav-btn:active { transform: scale(0.95); }
+
+        /* SWAP SECTION */
+        .swap-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #0f0824, #0a0a1a, #0f0824);
+            border-top: 3px solid rgba(124, 58, 237, 0.4);
+            border-bottom: 3px solid rgba(124, 58, 237, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swap-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .swap-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .swap-text { flex: 1; min-width: 260px; }
+
+        .swap-tag {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.55rem;
+            letter-spacing: 3px;
+            color: #a78bfa;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .swap-title {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .swap-title span { color: #a78bfa; }
+
+        .swap-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .swap-feats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+        }
+
+        .swap-feat {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45rem;
+            color: #a78bfa;
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 6px 10px;
+        }
+
+        .swap-cta { flex-shrink: 0; text-align: center; }
+
+        .swap-big-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            border: 3px solid #a78bfa;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 5px 5px 0 #3730a3;
+            animation: bigSwapPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes bigSwapPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 5px 5px 0 #3730a3; }
+            50% { box-shadow: 0 0 60px rgba(124, 58, 237, 0.7), 5px 5px 0 #3730a3; }
+        }
+
+        .swap-big-btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 0 0 60px rgba(124, 58, 237, 0.6), 8px 8px 0 #3730a3;
+        }
+
+        .swap-big-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 2px 2px 0 #3730a3;
+        }
+
+        .swap-note {
+            margin-top: 0.8rem;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            color: var(--gray);
         }
 
         .mobile-toggle {
@@ -1350,26 +1500,41 @@
         }
 
         .about-card {
-            background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
-            border: 3px solid var(--gold);
+            background: rgba(21, 26, 61, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 20px;
             padding: 2rem;
             position: relative;
-            transition: all 0.3s;
-            box-shadow: 5px 5px 0 var(--gold-dark);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
         }
 
         .about-card:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 10px 10px 0 var(--gold-dark);
+            transform: translateY(-8px);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15), 0 0 0 1px rgba(255,215,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+
+        .about-card::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.04) 0%, transparent 60%);
+            pointer-events: none;
         }
 
         .about-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--blue-glow), var(--magenta));
-            animation: rainbowSlide 3s linear infinite;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--blue-glow), var(--magenta), var(--gold));
+            background-size: 200% 100%;
+            border-radius: 20px 20px 0 0;
+            animation: rainbowSlide 4s linear infinite;
         }
 
         @keyframes rainbowSlide {
@@ -1378,29 +1543,37 @@
         }
 
         .about-card-img {
-            width: 60px; height: 60px;
-            border: 3px solid var(--gold);
-            margin-bottom: 1rem;
+            width: 64px; height: 64px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 16px;
+            margin-bottom: 1.2rem;
             object-fit: cover;
-            animation: imgPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .about-card:hover .about-card-img {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: scale(1.05);
         }
 
         @keyframes imgPulse {
-            0%, 100% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
-            50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); }
         }
 
         .about-card h3 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--gold);
             margin-bottom: 0.75rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .about-card p {
             color: var(--gray);
             font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* TOKEN SECTION */
@@ -1495,18 +1668,22 @@
         }
 
         .distribution-card {
-            background: var(--blue-mid);
-            border: 3px solid var(--gold);
-            padding: 1.5rem;
+            background: rgba(21, 26, 61, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 1.8rem;
             text-align: center;
             position: relative;
-            box-shadow: 4px 4px 0 var(--gold-dark);
-            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
         .distribution-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 6px 10px 0 var(--gold-dark);
+            transform: translateY(-8px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(255,215,0,0.1), inset 0 1px 0 rgba(255,255,255,0.08);
         }
 
         .distribution-card::before {
@@ -1969,6 +2146,148 @@
             justify-content: center;
             margin-top: 1rem;
         }
+        /* ROADMAP */
+        .roadmap-section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            margin-top: 4rem;
+            padding-left: 2rem;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 18px;
+            height: 18px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--gold);
+        }
+
+        .roadmap-q {
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .roadmap-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            line-height: 1.4;
+        }
+
+        /* CHART / DEX NAV BTN */
+        .dex-nav-btn {
+            font-family: 'Press Start 2P', cursive;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #064e3b, #065f46);
+            border: 3px solid #34d399;
+            color: #34d399;
+            padding: 10px 16px;
+            font-size: 0.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.1s;
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+        }
+
+        .dex-nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(52, 211, 153, 0.6);
+        }
+
+        .dex-nav-btn:active { transform: scale(0.95); }
+
+        /* FLUSH CARD upgrade */
+        .flush-card {
+            background: rgba(11, 15, 25, 0.7);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        .flush-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        .flush-card.blue {
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.15), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        .flush-card.blue:hover {
+            box-shadow: 0 20px 50px rgba(14, 165, 233, 0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        .flush-card.yellow {
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        .flush-card.yellow:hover {
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        /* HALL OF FLUSH */
+        .flush-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--blue-deep), #12122b, var(--blue-deep));
+        }
+
+        .flush-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+
+        .flush-quote {
+            font-family: 'Inter', sans-serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .flush-author {
+            font-family: 'Bangers', cursive;
+            font-size: 1rem;
+            color: var(--gray);
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -1985,11 +2304,15 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#machine">Lottery</a></li>
+                <li><a href="#swap">Swap</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#hall-of-flush">Hall of Flush</a></li>
                 <li><a href="#token">Token</a></li>
-                <li><a href="#how">How</a></li>
             </ul>
             <div class="nav-right">
+                <a href="https://dexscreener.com/sui/0xaa2347159a55adaf1d76745e13c2bc91449570d998f6ba8ecbf5129a5d4a0bbf" target="_blank" class="dex-nav-btn">📊 CHART</a>
+                <a href="https://td2swap.co/app" target="_blank" class="swap-nav-btn">⚡ SWAP</a>
                 <button class="wallet-btn" id="walletBtn" onclick="connectWallet()">
                     <span id="walletText">Connect</span>
                 </button>
@@ -2000,9 +2323,11 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <a href="#machine" onclick="toggleMobile()">Lottery</a>
+        <a href="#swap" onclick="toggleMobile()">Swap</a>
         <a href="#about" onclick="toggleMobile()">About</a>
+        <a href="#roadmap" onclick="toggleMobile()">Roadmap</a>
+        <a href="#hall-of-flush" onclick="toggleMobile()">Hall of Flush</a>
         <a href="#token" onclick="toggleMobile()">Token</a>
-        <a href="#how" onclick="toggleMobile()">How</a>
         <button class="wallet-btn" onclick="connectWallet()">Connect Wallet</button>
     </div>
 
@@ -2035,7 +2360,7 @@
             </h1>
 
             <p class="hero-desc">
-                Next-gen staking & lottery protocol on Sui. One ticket. One winner. Pure on-chain luck.
+                Toilet Dust is back... and this time it's built to last. The original shocked the Sui ecosystem by blasting its way to $7M market cap. This isn't a random reboot — it's an evolution.
             </p>
 
             <div class="hero-btns">
@@ -2054,6 +2379,29 @@
                         <div class="sparkle"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SWAP BANNER -->
+    <section class="swap-section" id="swap">
+        <div class="swap-inner">
+            <div class="swap-text">
+                <span class="swap-tag">[ TD2SWAP.CO ]</span>
+                <h2 class="swap-title">SWAP $TD2 <span>CROSS-CHAIN</span></h2>
+                <p class="swap-desc">TD2SWAP lets you swap TD2 and hundreds of other tokens across 10+ blockchains — no account, no KYC, no friction. Just enter an amount and go.</p>
+                <div class="swap-feats">
+                    <span class="swap-feat">⚡ &lt;2min Swaps</span>
+                    <span class="swap-feat">🔗 10+ Chains</span>
+                    <span class="swap-feat">🕵️ No KYC</span>
+                    <span class="swap-feat">🚫 No Account</span>
+                </div>
+            </div>
+            <div class="swap-cta">
+                <a href="https://td2swap.co/app" target="_blank" class="swap-big-btn">
+                    ⚡ START SWAPPING
+                </a>
+                <p class="swap-note">Powered by TD2SWAP.co</p>
             </div>
         </div>
     </section>
@@ -2234,6 +2582,60 @@
             </div>
         </div>
     </section>
+    
+    <!-- ROADMAP -->
+    <section class="roadmap-section" id="roadmap">
+        <div class="section-header reveal">
+            <div class="section-tag">[ THE FUTURE ]</div>
+            <h2 class="section-title">ZOOM TO THE <span class="gold-text">MOON</span></h2>
+        </div>
+
+        <div class="roadmap-timeline reveal">
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <span class="roadmap-q">Q1</span>
+                <p class="roadmap-text">Launch site, hype and light — start the flight</p>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <span class="roadmap-q">Q2</span>
+                <p class="roadmap-text">Listings, drops, community pops — no stops</p>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <span class="roadmap-q">Q3</span>
+                <p class="roadmap-text">NFT events and more intents — big dents</p>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <span class="roadmap-q">Q4</span>
+                <p class="roadmap-text">Partnerships bloom — zoom to the moon</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HALL OF FLUSH -->
+    <section class="flush-section" id="hall-of-flush">
+        <div class="section-header reveal">
+            <div class="section-tag">[ TESTIMONIALS ]</div>
+            <h2 class="section-title">HALL OF <span class="gold-text">FLUSH</span></h2>
+        </div>
+
+        <div class="flush-grid reveal">
+            <div class="flush-card yellow">
+                <span class="flush-quote">"this is insane"</span>
+                <span class="flush-author">— anon, clearly not holding</span>
+            </div>
+            <div class="flush-card blue">
+                <span class="flush-quote">"$7M? unhinged."</span>
+                <span class="flush-author">— the guy who missed it</span>
+            </div>
+            <div class="flush-card yellow">
+                <span class="flush-quote">"we're coming back"</span>
+                <span class="flush-author">— we weren't joking</span>
+            </div>
+        </div>
+    </section>
 
     <!-- TOKEN -->
     <section class="token-section" id="token">
@@ -2361,7 +2763,7 @@
                     <div class="social-name">TELEGRAM</div>
                     <div class="social-handle">t.me/ToiletDustTD2</div>
                 </a>
-                <a href="#" class="social-card reveal">
+                <a href="https://dexscreener.com/sui/0xaa2347159a55adaf1d76745e13c2bc91449570d998f6ba8ecbf5129a5d4a0bbf" target="_blank" class="social-card reveal">
                     <span class="social-icon">📊</span>
                     <div class="social-name">CHART</div>
                     <div class="social-handle">DexScreener</div>
@@ -2381,6 +2783,8 @@
                 <a href="#">DOCS</a>
                 <a href="https://x.com/toiletdustsui2">X</a>
                 <a href="https://t.me/ToiletDustTD2">TELEGRAM</a>
+                <a href="https://dexscreener.com/sui/0xaa2347159a55adaf1d76745e13c2bc91449570d998f6ba8ecbf5129a5d4a0bbf" target="_blank">CHART</a>
+                <a href="https://td2swap.co/app" target="_blank">SWAP</a>
             </div>
             <div class="footer-copy">© 2026 TD2 — BUILT ON SUI</div>
         </div>
