@@ -431,6 +431,119 @@
             color: var(--gray);
         }
 
+        /* SECURITY HUB */
+        .security-section {
+            padding: 5rem 2rem;
+            position: relative;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255, 0, 255, 0.14), transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(0, 255, 255, 0.12), transparent 45%),
+                linear-gradient(180deg, #0c0a20, #111038, #0c0a20);
+            border-top: 3px solid rgba(255, 215, 0, 0.35);
+            border-bottom: 3px solid rgba(0, 255, 255, 0.35);
+            overflow: hidden;
+        }
+
+        .security-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+        }
+
+        .security-shell {
+            max-width: 1150px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, rgba(13, 16, 37, 0.95), rgba(19, 23, 55, 0.95));
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.2), 0 0 70px rgba(0, 255, 255, 0.15);
+            padding: 2rem;
+        }
+
+        .security-headline {
+            text-align: center;
+            max-width: 840px;
+            margin: 0 auto 1.8rem;
+        }
+
+        .security-title {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(2.2rem, 6vw, 3.6rem);
+            letter-spacing: 1px;
+            color: var(--gold);
+            text-shadow: 0 0 18px rgba(255, 215, 0, 0.45);
+            margin-bottom: 0.7rem;
+        }
+
+        .security-text {
+            font-family: 'Inter', sans-serif;
+            color: #d6def8;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .security-grid {
+            margin-top: 1.8rem;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .security-link-card {
+            text-decoration: none;
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            background: linear-gradient(130deg, rgba(16, 20, 48, 0.95), rgba(11, 15, 35, 0.95));
+            padding: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .security-link-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--blue-glow);
+            box-shadow: 0 12px 35px rgba(0, 255, 255, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .security-link-card .label {
+            display: inline-block;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45rem;
+            color: var(--blue-glow);
+            margin-bottom: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .security-link-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            color: var(--white);
+            line-height: 1.5;
+            margin-bottom: 0.55rem;
+        }
+
+        .security-link-card p {
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            color: #a7b7d8;
+            line-height: 1.4;
+        }
+
+        .security-footnote {
+            margin-top: 1.3rem;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.48rem;
+            line-height: 1.7;
+            color: #9fb8ff;
+            letter-spacing: 0.6px;
+        }
+
         .mobile-toggle {
             display: none;
             background: none;
@@ -2096,7 +2209,7 @@
             .mobile-toggle { display: block; }
             .hero { padding: 6rem 1rem 3rem; }
             .hero-title { font-size: 1.2rem; }
-            .slot-section, .about-section, .token-section, .how-section, .community-section { padding: 4rem 1rem; }
+            .slot-section, .about-section, .token-section, .how-section, .community-section, .security-section { padding: 4rem 1rem; }
             .slot-layout { gap: 1.5rem; }
             .slot-info-panel { 
                 display: none; /* Hide panels on mobile, show only machine */
@@ -2105,6 +2218,8 @@
                 display: flex; /* Show only left panel (how to play) on mobile */
                 flex-direction: column;
             }
+            .security-shell { padding: 1.2rem; }
+            .security-grid { grid-template-columns: 1fr; }
             .reel { width: 70px; height: 85px; font-size: 2.5rem; }
             .reels-area { padding: 20px 10px; }
             .jackpot-value { font-size: 1.3rem; }
@@ -2305,6 +2420,7 @@
             <ul class="nav-links">
                 <li><a href="#machine">Lottery</a></li>
                 <li><a href="#swap">Swap</a></li>
+                <li><a href="#security">Security</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#hall-of-flush">Hall of Flush</a></li>
@@ -2324,6 +2440,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="#machine" onclick="toggleMobile()">Lottery</a>
         <a href="#swap" onclick="toggleMobile()">Swap</a>
+        <a href="#security" onclick="toggleMobile()">Security</a>
         <a href="#about" onclick="toggleMobile()">About</a>
         <a href="#roadmap" onclick="toggleMobile()">Roadmap</a>
         <a href="#hall-of-flush" onclick="toggleMobile()">Hall of Flush</a>
@@ -2403,6 +2520,45 @@
                 </a>
                 <p class="swap-note">Powered by TD2SWAP.co</p>
             </div>
+        </div>
+    </section>
+
+    <!-- SECURITY HUB -->
+    <section class="security-section" id="security">
+        <div class="security-shell reveal">
+            <div class="security-headline">
+                <div class="section-tag">[ SECURITY HUB ]</div>
+                <h2 class="security-title">SECURED INFRA, LIVE PORTALS, PUBLIC AUDITS</h2>
+                <p class="security-text">TD2 takes security seriously with dedicated staking and vesting deployments plus transparent audit reports. Everything below is live so holders can verify where the protocol stands before committing capital.</p>
+            </div>
+
+            <div class="security-grid">
+                <a href="https://td2stake.site/" target="_blank" rel="noopener noreferrer" class="security-link-card">
+                    <span class="label">[ LIVE STAKING ]</span>
+                    <h3>TD2 STAKE PORTAL</h3>
+                    <p>Stake directly on the official production interface.</p>
+                </a>
+
+                <a href="https://www.td2vest.site/" target="_blank" rel="noopener noreferrer" class="security-link-card">
+                    <span class="label">[ LIVE VESTING ]</span>
+                    <h3>TD2 VESTING PORTAL</h3>
+                    <p>Track vesting positions and unlock schedule transparently.</p>
+                </a>
+
+                <a href="https://github.com/syntrei/Audit-reports-/tree/be11f366fa736b342c7d48334da1e0be2bbfe920/reports/2026/TD2" target="_blank" rel="noopener noreferrer" class="security-link-card">
+                    <span class="label">[ AUDIT REPORT ]</span>
+                    <h3>TD2 CORE AUDIT</h3>
+                    <p>Review contract findings and remediation notes for TD2 modules.</p>
+                </a>
+
+                <a href="https://github.com/syntrei/Audit-reports-/tree/be11f366fa736b342c7d48334da1e0be2bbfe920/reports/2026/Vesting-Module" target="_blank" rel="noopener noreferrer" class="security-link-card">
+                    <span class="label">[ AUDIT REPORT ]</span>
+                    <h3>VESTING MODULE AUDIT</h3>
+                    <p>Inspect vesting-specific security checks and recommendations.</p>
+                </a>
+            </div>
+
+            <p class="security-footnote">SECURITY IS NOT A CLAIM. IT IS DOCUMENTED, LINKED, AND PUBLIC.</p>
         </div>
     </section>
 
@@ -2529,7 +2685,7 @@
                     </div>
                     <div class="info-card-body">
                         <p class="stake-desc">Stake your TD2 tokens to earn passive rewards every epoch!</p>
-                        <a href="stake.html" class="stake-btn">
+                        <a href="https://td2stake.site/" target="_blank" rel="noopener noreferrer" class="stake-btn">
                             🔒 STAKE NOW
                         </a>
                         <div class="stake-info">10% of supply reserved for staking rewards</div>
@@ -2690,7 +2846,7 @@
 
         <!-- Stake Button -->
         <div class="token-cta reveal">
-            <a href="stake.html" class="buy-token-btn">
+            <a href="https://td2stake.site/" target="_blank" rel="noopener noreferrer" class="buy-token-btn">
                 <span class="btn-icon">🔒</span>
                 <span>STAKE $TD2</span>
             </a>
