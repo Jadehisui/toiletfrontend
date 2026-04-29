@@ -5,7 +5,7 @@ import HeroScene from "@/components/HeroScene";
 import HUD from "@/components/HUD";
 import LotteryHub from "@/components/LotteryHub";
 import BackgroundMusic from "@/components/BackgroundMusic";
-import { MissionBriefing, Tokenomics, HowToBuy, Roadmap, TheCrew, Footer } from "@/components/Sections";
+import { Tokenomics, HowToBuy, Roadmap, TheCrew, Footer } from "@/components/Sections";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -21,7 +21,6 @@ function Index() {
       {introDone && <HUD />}
       <HeroScene />
       <LotteryHub />
-      <MissionBriefing />
       <Tokenomics />
       <HowToBuy />
       <Roadmap />

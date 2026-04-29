@@ -60,16 +60,15 @@ export function MissionBriefing() {
               className="font-display text-3xl leading-tight md:text-4xl"
               style={{ color: "var(--gta-cream)" }}
             >
-              He sat on the throne. <br />Now he runs the streets.
+              Community first. <br />Built for TD2 holders.
             </h3>
             <p className="text-base leading-relaxed text-white/80 md:text-lg">
-              Born in the back alleys of Los Santos, raised on stale memes and questionable plumbing,
-              the King of Toilet Dust returns for the sequel nobody asked for —{" "}
-              <span style={{ color: "var(--gta-green)" }}>but everyone needs.</span>
+              TD2 is a community-powered token focused on transparent growth, active participation,
+              and long-term utility across the ecosystem.
             </p>
             <p className="text-base leading-relaxed text-white/70">
-              $TDUST is a 100% community-owned, contract-renounced, zero-tax memecoin built for the
-              degens that flush first and ask questions later. Welcome to V 2.0.
+              $TD2 is a 100% community-owned, contract-renounced, zero-tax memecoin built for holders
+              who value momentum, consistency, and strong community execution.
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
               {["RENOUNCED", "LP BURNED", "0 / 0 TAX", "FAIR LAUNCH"].map((b) => (
@@ -204,7 +203,7 @@ export function HowToBuy() {
   const steps = [
     { t: "Get a wallet", d: "Install Phantom, MetaMask, or your weapon of choice." },
     { t: "Load it up", d: "Fund with SOL or ETH. Don't ask the King for change." },
-    { t: "Swap for $TDUST", d: "Paste the contract, swap, confirm. Easy as a flush." },
+    { t: "Swap for $TD2", d: "Paste the contract, swap, and confirm." },
     { t: "Hold the throne", d: "Diamond hands the dust. The King watches." },
   ];
   return (
@@ -252,8 +251,8 @@ export function Roadmap() {
   const phases = [
     { phase: "PHASE 01", title: "STREET LAUNCH", body: "Stealth launch, LP burn, contract renounce, secure the block.", img: tileGraffiti },
     { phase: "PHASE 02", title: "CITY HEAT", body: "1k+ holders, CMC + CG listings, meme arsenal deployed across socials.", img: tileSign },
-    { phase: "PHASE 03", title: "VINEWOOD FAME", body: "Tier-1 CEX talks, KOL partnerships, viral campaigns, NFT crowns.", img: tileVine },
-    { phase: "PHASE 04", title: "WORLD DOMINATION", body: "Cross-chain expansion, Toilet Dust merch, IRL takeovers. The throne is ours.", img: tileHeli },
+    { phase: "PHASE 03", title: "PARTNERSHIP GROWTH", body: "Tier-1 CEX talks, KOL partnerships, and sustained campaign execution.", img: tileVine },
+    { phase: "PHASE 04", title: "ECOSYSTEM EXPANSION", body: "Cross-chain expansion, product rollouts, and broader community activation.", img: tileHeli },
   ];
   return (
     <section id="roadmap" className="relative overflow-hidden bg-[var(--gta-night)] py-20 md:py-28">
@@ -342,7 +341,7 @@ export function TheCrew() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-black bg-[var(--gta-green)] px-8 py-4 font-display text-lg uppercase text-black shadow-[0_5px_0_#000] transition-transform hover:translate-y-[-2px] hover:shadow-[0_7px_0_#000]"
           >
-            ▶ Buy $TDUST Now
+            ▶ Buy $TD2 Now
           </a>
         </div>
       </div>
@@ -352,7 +351,7 @@ export function TheCrew() {
 }
 
 export function Footer() {
-  const items = ["TOILET DUST V 2.0", "★ LOS SANTOS ★", "FLUSH THE MARKET", "$TDUST", "▶ V 2.0", "WANTED ★★★★★"];
+  const items = ["TD2", "COMMUNITY FIRST", "FLUSH THE MARKET", "$TD2", "ON SUI", "WANTED ★★★★★"];
   return (
     <footer className="relative overflow-hidden border-t-4 border-black bg-[var(--gta-green)] py-4 text-black">
       <div className="flex animate-ticker whitespace-nowrap will-change-transform">
@@ -363,7 +362,7 @@ export function Footer() {
         ))}
       </div>
       <div className="border-t-2 border-black bg-[var(--gta-night)] px-5 py-5 text-center text-xs text-white/60">
-        © {new Date().getFullYear()} TOILET DUST V 2.0 — A community memecoin parody. Not financial advice.
+        © {new Date().getFullYear()} TD2 — A community memecoin parody. Not financial advice.
         Not affiliated with Rockstar Games or Take-Two Interactive.
       </div>
     </footer>

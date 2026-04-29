@@ -35,7 +35,7 @@ export default function HUD() {
 
       {/* Cash counter */}
       <div className="flex flex-col items-end gap-1 border-2 border-black bg-black/55 px-3 py-2 text-right backdrop-blur-sm">
-        <span className="font-stencil text-[9px] tracking-[0.3em] text-white/60">$TDUST</span>
+        <span className="font-stencil text-[9px] tracking-[0.3em] text-white/60">$TD2</span>
         <span
           className="font-display text-base tabular-nums md:text-xl"
           style={{ color: "var(--gta-green)" }}

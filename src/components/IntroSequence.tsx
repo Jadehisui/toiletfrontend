@@ -72,7 +72,7 @@ export default function IntroSequence({ onDone }: { onDone: () => void }) {
                   className="font-display text-3xl text-stroke-thin text-gta-cream md:text-5xl"
                   style={{ color: "var(--gta-cream)" }}
                 >
-                  TOILET&nbsp;DUST&nbsp;V
+                  TD2
                 </motion.h2>
                 <div className="mt-8 h-[3px] w-64 overflow-hidden bg-white/15 md:w-96">
                   <motion.div
@@ -84,7 +84,7 @@ export default function IntroSequence({ onDone }: { onDone: () => void }) {
                   />
                 </div>
                 <p className="mt-3 font-stencil text-[10px] tracking-[0.4em] text-white/60 animate-blink">
-                  LOADING LOS SANTOS…
+                  LOADING TD2…
                 </p>
               </motion.div>
             )}
@@ -126,7 +126,7 @@ export default function IntroSequence({ onDone }: { onDone: () => void }) {
                   className="animate-slam font-display text-6xl leading-[0.85] text-stroke-black md:text-[10rem]"
                   style={{ color: "var(--gta-cream)" }}
                 >
-                  TOILET<br />DUST
+                  TD2
                 </h1>
                 <motion.div
                   initial={{ y: -40, scale: 0.6, opacity: 0 }}
@@ -145,7 +145,7 @@ export default function IntroSequence({ onDone }: { onDone: () => void }) {
                 </motion.div>
               </div>
               <p className="absolute bottom-6 left-1/2 -translate-x-1/2 font-stencil text-[10px] tracking-[0.4em] text-white/70 animate-blink">
-                CLICK TO ENTER LOS SANTOS
+                CLICK TO ENTER TD2
               </p>
             </div>
           )}

@@ -35,7 +35,7 @@ export default function HeroScene() {
       {/* Sky / skyline */}
       <motion.img
         src={skyline}
-        alt="Los Santos skyline"
+        alt="City skyline"
         style={{
           y: ySky,
           x: mouse.x * -10,
@@ -79,7 +79,7 @@ export default function HeroScene() {
       {/* Mascot */}
       <motion.img
         src={mascot}
-        alt="Toilet Dust mascot"
+        alt="TD2 mascot"
         style={{ y: yMascot, x: mouse.x * 14 }}
         className="absolute bottom-0 left-1/2 h-[55%] -translate-x-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] md:left-[2%] md:h-[88%] md:translate-x-0"
       />
@@ -96,13 +96,13 @@ export default function HeroScene() {
             className="mb-2 font-stencil text-[10px] tracking-[0.5em] md:text-xs"
             style={{ color: "var(--gta-cream)" }}
           >
-            ◆ WELCOME TO LOS SANTOS ◆
+            ◆ WELCOME TO TD2 ◆
           </p>
           <h1
             className="font-display text-5xl leading-[0.85] text-stroke-black md:text-7xl lg:text-8xl"
             style={{ color: "var(--gta-cream)" }}
           >
-            TOILET<br />DUST
+            TD2
           </h1>
           <div className="mt-3 flex items-center justify-center gap-3 md:justify-end">
             <div className="gta-shield flex h-16 w-16 items-end justify-center pb-1 md:h-20 md:w-20">
@@ -130,7 +130,7 @@ export default function HeroScene() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-2 border-black bg-black/60 px-6 py-3 font-stencil text-sm uppercase text-white shadow-[0_4px_0_#000] transition-transform hover:translate-y-[-2px] hover:bg-black/80"
             >
-              ⚡ Swap $TDUST
+              ⚡ Swap $TD2
             </a>
             <a
               href="https://td2stake.site/"

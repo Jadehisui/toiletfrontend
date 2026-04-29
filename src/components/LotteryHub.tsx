@@ -267,7 +267,7 @@ export default function LotteryHub() {
             ◆ MISSION LOTTERY ◆
           </p>
           <h2 className="mt-2 font-display text-4xl leading-none text-stroke-black md:text-6xl" style={{ color: "var(--gta-cream)" }}>
-            FLUSH MACHINE
+            TD2 MACHINE
           </h2>
         </div>
 
