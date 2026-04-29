@@ -1,0 +1,159 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* TOILET DUST V 2.0 — GTA-style design system */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gta-green: var(--gta-green);
+  --color-gta-orange: var(--gta-orange);
+  --color-gta-pink: var(--gta-pink);
+  --color-gta-cream: var(--gta-cream);
+  --color-gta-night: var(--gta-night);
+  --font-display: "Bungee", system-ui, sans-serif;
+  --font-stencil: "Russo One", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.16 0.02 260);
+  --foreground: oklch(0.97 0.02 80);
+  --card: oklch(0.20 0.02 260);
+  --card-foreground: oklch(0.97 0.02 80);
+  --popover: oklch(0.20 0.02 260);
+  --popover-foreground: oklch(0.97 0.02 80);
+  --primary: oklch(0.78 0.18 130);
+  --primary-foreground: oklch(0.16 0.02 260);
+  --secondary: oklch(0.25 0.03 260);
+  --secondary-foreground: oklch(0.97 0.02 80);
+  --muted: oklch(0.22 0.02 260);
+  --muted-foreground: oklch(0.72 0.02 80);
+  --accent: oklch(0.72 0.20 40);
+  --accent-foreground: oklch(0.16 0.02 260);
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.97 0.02 80);
+  --border: oklch(0.30 0.03 260);
+  --input: oklch(0.30 0.03 260);
+  --ring: oklch(0.78 0.18 130);
+
+  --gta-green: oklch(0.78 0.18 130);
+  --gta-orange: oklch(0.72 0.20 40);
+  --gta-pink: oklch(0.70 0.22 0);
+  --gta-cream: oklch(0.95 0.04 85);
+  --gta-night: oklch(0.13 0.02 260);
+
+  --shadow-stencil: 0 6px 0 rgba(0,0,0,0.55), 0 12px 30px rgba(0,0,0,0.55);
+  --shadow-card: 0 20px 50px -10px rgba(0,0,0,0.8), 0 0 0 2px rgba(255,255,255,0.06) inset;
+  --grad-sunset: linear-gradient(180deg, oklch(0.72 0.20 40) 0%, oklch(0.70 0.22 0) 50%, oklch(0.30 0.10 290) 100%);
+}
+
+.dark {
+  --background: oklch(0.13 0.02 260);
+  --foreground: oklch(0.97 0.02 80);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* ── Utilities ───────────────────────────────────────── */
+.font-display { font-family: var(--font-display); letter-spacing: 0.02em; }
+.font-stencil { font-family: var(--font-stencil); letter-spacing: 0.04em; }
+
+.text-stroke-black {
+  -webkit-text-stroke: 3px #000;
+  paint-order: stroke fill;
+}
+.text-stroke-thin {
+  -webkit-text-stroke: 1.5px #000;
+  paint-order: stroke fill;
+}
+
+.gta-shield {
+  background: var(--color-gta-green);
+  clip-path: polygon(50% 0, 100% 25%, 85% 100%, 15% 100%, 0 25%);
+}
+
+.grain {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.18; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");
+}
+
+.scanline {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.08;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0 1px, transparent 1px 3px);
+}
+
+@keyframes slamIn {
+  0% { transform: translateY(-120%) scale(2.4) rotate(-6deg); opacity: 0; filter: blur(14px); }
+  60% { transform: translateY(8%) scale(0.92) rotate(0deg); opacity: 1; filter: blur(0); }
+  80% { transform: translateY(-2%) scale(1.04); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes shake {
+  0%, 100% { transform: translate(0,0); }
+  25% { transform: translate(-3px, 2px); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, -3px); }
+}
+@keyframes blink {
+  0%, 60%, 100% { opacity: 1; } 30% { opacity: 0.2; }
+}
+@keyframes spinCoin { to { transform: rotateY(360deg); } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 8px var(--color-gta-green)); }
+  50% { filter: drop-shadow(0 0 22px var(--color-gta-green)); }
+}
+
+.animate-slam { animation: slamIn 0.7s cubic-bezier(.2,.9,.2,1) both; }
+.animate-shake { animation: shake 0.18s ease-in-out 3; }
+.animate-blink { animation: blink 1.1s steps(2, end) infinite; }
+.animate-glow { animation: glow 3s ease-in-out infinite; }
+.animate-ticker { animation: ticker 30s linear infinite; }
+
+.coin-3d {
+  transform-style: preserve-3d;
+  animation: spinCoin 14s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coin-3d, .animate-glow, .animate-blink, .animate-ticker { animation: none !important; }
+}
