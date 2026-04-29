@@ -3,7 +3,7 @@ import { useState } from "react";
 import IntroSequence from "@/components/IntroSequence";
 import HeroScene from "@/components/HeroScene";
 import HUD from "@/components/HUD";
-import { MissionBriefing, Tokenomics, HowToBuy, Roadmap, TheCrew, Footer } from "@/components/Sections";
+import { MissionBriefing, Tokenomics, HowToBuy, TheCrew, Footer } from "@/components/Sections";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -20,7 +20,6 @@ function Index() {
       <MissionBriefing />
       <Tokenomics />
       <HowToBuy />
-      <Roadmap />
       <TheCrew />
       <Footer />
     </main>
